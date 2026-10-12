@@ -1,0 +1,278 @@
+# Copyright (C) 2026 Hugo Vial-Jaime
+# This file is distributed under the MIT licence.
+msgid ""
+msgstr ""
+"Project-Id-Version: Dahu User Pricing\n"
+"Report-Msgid-Bugs-To: https://dahu-concept.fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2026-10-08 09:36+0000\n"
+"X-Domain: dahu-user-pricing\n"
+
+#. translators: 1: tier name, 2: shop currency symbol. */
+#: includes/class-dahu-user-pricing-product-fields.php:79 includes/class-dahu-user-pricing-product-fields.php:125
+msgid "%1$s price (%2$s)"
+msgstr ""
+
+#. translators: %s: how many products carry a price for this tier. */
+#: includes/class-dahu-user-pricing-admin-screens.php:345
+msgid "%s product"
+msgid_plural "%s products"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:553
+msgid "A margin tells a reseller what they make on a resale. It is off by default because it is commercial information, not decoration."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-preview.php:319
+msgid "A price preview is active, so this order would be placed at the previewed tier's prices. Stop the preview from the toolbar, then order again."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:593
+msgid "Also delete every tier price set on a product"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:409
+msgid "An account holding two mapped roles gets one of the two tiers, and which one is not defined — give an account one mapped role."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:537
+msgid "As a multiplier"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:536
+msgid "As a percentage of the public price"
+msgstr ""
+
+#: dahu-user-pricing.php:234
+msgid "By Hugo Vial-Jaime — Dahu-Concept"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:190
+msgid "Create the price tiers your shop sells at, map the roles that get them, and every product gains one price field per tier."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-order.php:272
+msgid "Customer not found."
+msgstr ""
+
+#: dahu-user-pricing.php:121
+msgid "Dahu User Pricing requires WooCommerce to be installed and active."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:584
+msgid "Data"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:350
+msgid "Delete tier"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:525
+msgid "Display"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:535
+msgid "Do not show it"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:266
+msgid "Key"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:265
+msgid "Label for the public price"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:264
+msgid "Label for the tier price"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-product-fields.php:84
+msgid "Leave empty for this tier to pay the public price. Zero means free for this tier."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-product-fields.php:130
+msgid "Leave empty to inherit the parent product, or the public price if it has none."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:561
+msgid "Let an account switch between its own prices and the public ones"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:531
+msgid "Margin between the two prices"
+msgstr ""
+
+#. translators: %s: margin as a percentage, already formatted. */
+#: includes/class-dahu-user-pricing-display.php:440
+msgid "Margin: %s%%"
+msgstr ""
+
+#. translators: %s: multiplier between the tier price and the public price. */
+#: includes/class-dahu-user-pricing-display.php:454
+msgid "Margin: ×%s"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:263
+msgid "Name"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:196
+msgid "No tier yet. Name one below and save — nothing about your prices changes until a tier exists and a role is mapped to it."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:436
+msgid "No tier — public prices"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:402
+msgid "Nothing to map yet: save a tier first."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:594
+msgid "Off by default. Tier prices are typed in by hand and deleting them cannot be undone, so uninstalling keeps them and a reinstall finds them again."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:590
+msgid "On uninstall"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:474
+msgid "Only roles that can manage WooCommerce are listed: previewing shows every tier's prices, which is not something a shop should be able to hand to its customers by ticking a box."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-order.php:264
+msgid "Order not found."
+msgstr ""
+
+#. translators: %s: the shortcode that renders the switch. */
+#: includes/class-dahu-user-pricing-admin-screens.php:564
+msgid "Place the control with the %s shortcode. The switch changes what is displayed only: the cart always charges the account's own price."
+msgstr ""
+
+#: dahu-user-pricing.php:239
+msgid "Plugin website"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-preview.php:169
+msgid "Preview prices"
+msgstr ""
+
+#. translators: %s: name of the tier being previewed. */
+#: includes/class-dahu-user-pricing-preview.php:258
+msgid "Previewing prices as %s. Prices shown are really this tier's prices, and an order cannot be placed until you stop."
+msgstr ""
+
+#. translators: %s: name of the tier being previewed. */
+#: includes/class-dahu-user-pricing-preview.php:172
+msgid "Previewing: %s"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:267
+msgid "Prices set"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:558
+msgid "Public-price view switch"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:125
+msgid "Reprice lines for this customer"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:416
+msgid "Role"
+msgstr ""
+
+#: dahu-user-pricing.php:206
+msgid "Settings"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-display.php:160
+msgid "Show my prices"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-display.php:159
+msgid "Show public prices"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-preview.php:196 includes/class-dahu-user-pricing-preview.php:263
+msgid "Stop previewing"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:238
+msgid "That tier no longer exists."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:256
+msgid "The labels are shown in front of a price on the shop. Leave one empty to show that price with no prefix. No need for a trailing space — the spacing is handled for you."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:126
+msgid "The lines could not be repriced. Reload the order and try again."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:469
+msgid "These roles get a toolbar menu for looking at the shop as any tier. Prices while previewing are really that tier's prices, so an order cannot be placed until the preview is stopped."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-order.php:278
+msgid "This order can no longer be repriced: it has been paid, refunded, or is past editing."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:417
+msgid "Tier"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:237
+msgid "Tier deleted. The prices filed under it were kept: recreating the tier with the same name brings them back."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:252
+msgid "Tiers"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:59 includes/class-dahu-user-pricing-admin-screens.php:60 includes/class-dahu-user-pricing-admin-screens.php:184
+msgid "User pricing"
+msgstr ""
+
+#. translators: %s: plugin version number. */
+#: dahu-user-pricing.php:228
+msgid "Version %s"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:397
+msgid "Which roles get which tier"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:465
+msgid "Who can preview a tier"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:145
+msgid "You are not allowed to change pricing settings."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-order.php:257
+msgid "You are not allowed to edit orders."
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:327
+msgid "e.g. Suggested retail:"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:313
+msgid "e.g. Trade"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:320
+msgid "e.g. Your price:"
+msgstr ""
+
+#: includes/class-dahu-user-pricing-admin-screens.php:331
+msgid "set on save"
+msgstr ""
+
