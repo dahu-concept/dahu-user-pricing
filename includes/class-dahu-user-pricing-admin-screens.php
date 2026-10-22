@@ -79,10 +79,23 @@ class Dahu_User_Pricing_Admin_Screens {
 
 		if ( 'woocommerce_page_' . DAHU_USER_PRICING_SETTINGS_PAGE === $screen->id ) {
 
+			// The family sheet first, and its own second: the plugin's own rules
+			// are written to sit on top of the shared components, so the order is
+			// a dependency and not a hope. One handle across the family -- the
+			// file is byte-identical everywhere, so whichever plugin loads it
+			// first serves all of them, and a shop with six of these installed
+			// downloads one copy.
+			wp_enqueue_style(
+				'dahu-ui',
+				DAHU_USER_PRICING_URL . 'assets/css/dahu-ui.css',
+				array(),
+				DAHU_USER_PRICING_VERSION
+			);
+
 			wp_enqueue_style(
 				'dahu-user-pricing-admin-settings',
 				DAHU_USER_PRICING_URL . 'assets/css/admin-settings.css',
-				array(),
+				array( 'dahu-ui' ),
 				DAHU_USER_PRICING_VERSION
 			);
 
@@ -91,10 +104,23 @@ class Dahu_User_Pricing_Admin_Screens {
 
 		if ( 'product' === $screen->id ) {
 
+			// The family sheet first, and its own second: the plugin's own rules
+			// are written to sit on top of the shared components, so the order is
+			// a dependency and not a hope. One handle across the family -- the
+			// file is byte-identical everywhere, so whichever plugin loads it
+			// first serves all of them, and a shop with six of these installed
+			// downloads one copy.
+			wp_enqueue_style(
+				'dahu-ui',
+				DAHU_USER_PRICING_URL . 'assets/css/dahu-ui.css',
+				array(),
+				DAHU_USER_PRICING_VERSION
+			);
+
 			wp_enqueue_style(
 				'dahu-user-pricing-admin-product',
 				DAHU_USER_PRICING_URL . 'assets/css/admin-product.css',
-				array(),
+				array( 'dahu-ui' ),
 				DAHU_USER_PRICING_VERSION
 			);
 
@@ -179,16 +205,14 @@ class Dahu_User_Pricing_Admin_Screens {
 		$roles    = wp_roles()->get_names();
 		$option   = Dahu_User_Pricing_Settings::OPTION_KEY;
 
-		echo '<div class="wrap dahu-user-pricing-settings">';
+		echo '<div class="wrap dahu-ui dahu-user-pricing-settings">';
 
-		printf( '<h1>%s</h1>', esc_html__( 'User pricing', 'dahu-user-pricing' ) );
+		echo '<div class="dahu-ui-head">';
+		printf( '<h1 class="dahu-ui-head__title">%s</h1>', esc_html__( 'User pricing', 'dahu-user-pricing' ) );
+		printf( '<p class="dahu-ui-head__sub">%s</p>', esc_html__( 'Prices that follow the customer rather than the catalogue.', 'dahu-user-pricing' ) );
+		echo '</div>';
 
 		self::render_delete_notice();
-
-		printf(
-			'<p class="dahu-user-pricing-settings__intro">%s</p>',
-			esc_html__( 'Create the price tiers your shop sells at, map the roles that get them, and every product gains one price field per tier.', 'dahu-user-pricing' )
-		);
 
 		echo '<hr class="wp-header-end">';
 
@@ -209,7 +233,7 @@ class Dahu_User_Pricing_Admin_Screens {
 		self::render_display( $option, $settings );
 		self::render_data( $option, $settings );
 
-		submit_button();
+		submit_button( null, 'dahu-ui-btn dahu-ui-btn--go' );
 
 		echo '</form>';
 
@@ -251,7 +275,9 @@ class Dahu_User_Pricing_Admin_Screens {
 	 */
 	private static function render_tiers( $option, $tiers ) {
 
-		printf( '<h2 class="title">%s</h2>', esc_html__( 'Tiers', 'dahu-user-pricing' ) );
+		echo '<div class="dahu-ui-card">';
+
+		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Tiers', 'dahu-user-pricing' ) );
 
 		printf(
 			'<p class="dahu-user-pricing-settings__hint">%s</p>',
@@ -291,6 +317,8 @@ class Dahu_User_Pricing_Admin_Screens {
 		);
 
 		echo '</tbody></table>';
+
+		echo '</div>';
 	}
 
 	/**
@@ -396,13 +424,16 @@ class Dahu_User_Pricing_Admin_Screens {
 	 */
 	private static function render_role_map( $option, $settings, $tiers, $roles ) {
 
-		printf( '<h2 class="title">%s</h2>', esc_html__( 'Which roles get which tier', 'dahu-user-pricing' ) );
+		echo '<div class="dahu-ui-card">';
+
+		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Which roles get which tier', 'dahu-user-pricing' ) );
 
 		if ( ! $tiers ) {
 			printf(
 				'<p class="dahu-user-pricing-settings__hint">%s</p>',
 				esc_html__( 'Nothing to map yet: save a tier first.', 'dahu-user-pricing' )
 			);
+			echo '</div>';
 			return;
 		}
 
@@ -452,6 +483,8 @@ class Dahu_User_Pricing_Admin_Screens {
 		}
 
 		echo '</tbody></table>';
+
+		echo '</div>';
 	}
 
 	/**
@@ -464,7 +497,9 @@ class Dahu_User_Pricing_Admin_Screens {
 	 */
 	private static function render_managers( $option, $settings, $roles ) {
 
-		printf( '<h2 class="title">%s</h2>', esc_html__( 'Who can preview a tier', 'dahu-user-pricing' ) );
+		echo '<div class="dahu-ui-card">';
+
+		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Who can preview a tier', 'dahu-user-pricing' ) );
 
 		printf(
 			'<p class="dahu-user-pricing-settings__hint">%s</p>',
@@ -500,6 +535,8 @@ class Dahu_User_Pricing_Admin_Screens {
 		}
 
 		echo '</fieldset>';
+
+		echo '</div>';
 	}
 
 	/**
@@ -524,7 +561,9 @@ class Dahu_User_Pricing_Admin_Screens {
 	 */
 	private static function render_display( $option, $settings ) {
 
-		printf( '<h2 class="title">%s</h2>', esc_html__( 'Display', 'dahu-user-pricing' ) );
+		echo '<div class="dahu-ui-card">';
+
+		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Display', 'dahu-user-pricing' ) );
 
 		echo '<table class="form-table" role="presentation"><tbody>';
 
@@ -569,6 +608,8 @@ class Dahu_User_Pricing_Admin_Screens {
 		);
 
 		echo '</tbody></table>';
+
+		echo '</div>';
 	}
 
 	/**
@@ -583,7 +624,9 @@ class Dahu_User_Pricing_Admin_Screens {
 	 */
 	private static function render_data( $option, $settings ) {
 
-		printf( '<h2 class="title">%s</h2>', esc_html__( 'Data', 'dahu-user-pricing' ) );
+		echo '<div class="dahu-ui-card">';
+
+		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Data', 'dahu-user-pricing' ) );
 
 		echo '<table class="form-table" role="presentation"><tbody>';
 
@@ -597,5 +640,7 @@ class Dahu_User_Pricing_Admin_Screens {
 		);
 
 		echo '</tbody></table>';
+
+		echo '</div>';
 	}
 }

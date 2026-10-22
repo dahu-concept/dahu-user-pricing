@@ -243,3 +243,91 @@ add_filter(
 	10,
 	2
 );
+
+/*
+ * The welcome screen, shown once just after activation.
+ *
+ * Registered here rather than inside the admin include, because the
+ * activation flag has to be set whatever else is loaded.
+ */
+require_once DAHU_USER_PRICING_PATH . 'includes/dahu-welcome.php';
+
+/*
+ * The flag, not a redirect: an activation hook that redirects breaks bulk
+ * activation and WP-CLI, which activate several plugins in one request. The
+ * welcome screen reads the flag on the next page load, where a redirect is
+ * safe, and clears it when several plugins were activated together.
+ */
+register_activation_hook(
+	__FILE__,
+	static function () {
+		Dahu_Welcome::mark_activated( 'dahu-user-pricing' );
+	}
+);
+
+add_action(
+	'init',
+	static function () {
+		Dahu_Welcome::register(
+			array(
+				'slug'       => 'dahu-user-pricing',
+				'name'       => __( 'User pricing', 'dahu-user-pricing' ),
+				'tagline'    => __( 'Prices that follow the customer rather than the catalogue.', 'dahu-user-pricing' ),
+				'file'       => DAHU_USER_PRICING_FILE,
+				'version'    => DAHU_USER_PRICING_VERSION,
+				'textdomain' => 'dahu-user-pricing',
+				/*
+				 * Les mots de l'accueil viennent d'ici : le fichier partagé est
+				 * recopié dans toute la famille et ne peut donc porter aucun
+				 * domaine de traduction.
+				 */
+				'strings'    => array(
+					'next'   => __( 'Next', 'dahu-user-pricing' ),
+					'done'   => __( 'Done', 'dahu-user-pricing' ),
+					'skip'   => __( 'Skip', 'dahu-user-pricing' ),
+					'of'     => __( 'of', 'dahu-user-pricing' ),
+					'denied' => __( 'You are not allowed to view this page.', 'dahu-user-pricing' ),
+				),
+				'points'     => array(
+				array(
+					'title' => __( 'Per customer', 'dahu-user-pricing' ),
+					'text'  => __( 'A price for one account, or for a whole role.', 'dahu-user-pricing' ),
+				),
+				array(
+					'title' => __( 'Shown everywhere', 'dahu-user-pricing' ),
+					'text'  => __( 'Catalogue, product page, cart and order agree.', 'dahu-user-pricing' ),
+				),
+				array(
+					'title' => __( 'No surprises', 'dahu-user-pricing' ),
+					'text'  => __( 'The customer sees the price they will pay.', 'dahu-user-pricing' ),
+				),
+				),
+
+				/*
+				 * The one-time tour. Every selector points at something the
+				 * settings screen always renders, including on a fresh install
+				 * with no tier yet. The role map is left out on purpose: it is
+				 * only rendered once a tier exists.
+				 */
+				'tour_screen' => 'woocommerce_page_dahu-user-pricing',
+				'tour'        => array(
+					array(
+						'selector' => 'input[name="dahu_user_pricing_settings[tiers][dahu.new][label]"]',
+						'title'    => __( 'Name a tier', 'dahu-user-pricing' ),
+						'text'     => __( 'Type a name here and save to create your first price tier.', 'dahu-user-pricing' ),
+					),
+					array(
+						'selector' => '.dahu-user-pricing-settings__roles',
+						'title'    => __( 'Who can preview', 'dahu-user-pricing' ),
+						'text'     => __( 'Tick the roles that may browse the shop as any tier.', 'dahu-user-pricing' ),
+					),
+					array(
+						'selector' => '.dahu-user-pricing-settings__margin',
+						'title'    => __( 'Show the margin', 'dahu-user-pricing' ),
+						'text'     => __( 'Optionally show resellers their margin over the public price.', 'dahu-user-pricing' ),
+					),
+				),
+			)
+		);
+	}
+);
