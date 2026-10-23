@@ -129,8 +129,8 @@ class Dahu_User_Pricing_Settings {
 
 		return array(
 			'label'        => $label,
-			'label_public' => isset( $tier['label_public'] ) ? sanitize_text_field( wp_unslash( $tier['label_public'] ) ) : '',
-			'label_tier'   => isset( $tier['label_tier'] ) ? sanitize_text_field( wp_unslash( $tier['label_tier'] ) ) : '',
+			'label_public' => isset( $tier['label_public'] ) ? sanitize_text_field( (string) $tier['label_public'] ) : '',
+			'label_tier'   => isset( $tier['label_tier'] ) ? sanitize_text_field( (string) $tier['label_tier'] ) : '',
 		);
 	}
 
@@ -150,6 +150,23 @@ class Dahu_User_Pricing_Settings {
 	 *
 	 * @param mixed $input Raw submitted value.
 	 * @return array
+	 */
+	/*
+	 * NO wp_unslash() ANYWHERE BELOW, AND THAT IS THE FIX.
+	 *
+	 * `wp-admin/options.php` unslashes what it hands to a sanitize_callback,
+	 * so what arrives here already holds real backslashes. Unslashing again
+	 * ate one the shop owner had typed — and this sanitiser runs more than
+	 * once per save: WordPress sanitises twice the first time an option is
+	 * written (`update_option()` then `add_option()`), and `update()` below
+	 * sanitises explicitly before calling `update_option()` on a REGISTERED
+	 * setting, which sanitises once more. Deleting a tier goes through
+	 * `update()`, so every deletion used to eat another layer off every
+	 * label, quietly, and re-typing the text appeared to fix it.
+	 *
+	 * Everything else here — sanitize_text_field(), sanitize_key() — is
+	 * idempotent, so leaving the slashes alone makes the whole sanitiser
+	 * idempotent.
 	 */
 	public static function sanitize( $input ) {
 
@@ -192,7 +209,7 @@ class Dahu_User_Pricing_Settings {
 				continue;
 			}
 
-			$label = isset( $tier['label'] ) ? sanitize_text_field( wp_unslash( $tier['label'] ) ) : '';
+			$label = isset( $tier['label'] ) ? sanitize_text_field( (string) $tier['label'] ) : '';
 
 			// An EXISTING tier whose label was cleared keeps existing, with
 			// its key standing in as a name. Dropping it here would make an
@@ -208,7 +225,7 @@ class Dahu_User_Pricing_Settings {
 				continue;
 			}
 
-			$label = isset( $tier['label'] ) ? sanitize_text_field( wp_unslash( $tier['label'] ) ) : '';
+			$label = isset( $tier['label'] ) ? sanitize_text_field( (string) $tier['label'] ) : '';
 
 			if ( '' === $label ) {
 				// The empty "add a tier" row, left as it was printed. Not an

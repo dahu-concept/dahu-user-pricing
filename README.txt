@@ -4,7 +4,7 @@ Tags: woocommerce, wholesale, b2b, pricing, trade prices
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -121,6 +121,9 @@ It can hold two mapped roles, and it will get one of the two tiers — which one
 is not defined. Give an account one mapped role.
 
 == Changelog ==
+
+= 1.1.0 =
+* The activation screen now opens on the plugin's own mark rather than its initials, and the banner carries the same drawing as a watermark.
 
 = 1.0.0 =
 * First public release.

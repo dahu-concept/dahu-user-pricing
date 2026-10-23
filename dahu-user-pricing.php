@@ -3,7 +3,7 @@
  * Plugin Name:       Dahu User Pricing
  * Plugin URI:        https://dahu-concept.fr
  * Description:       Per-account pricing for WooCommerce: named customer tiers, a price per tier on every product and variation, resale-margin display, a view switch between tier and public price, and admin-created order lines priced correctly net of tax.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Hugo Vial-Jaime
  * Author URI:        mailto:contact@dahu-concept.fr
  * License:           MIT
@@ -20,7 +20,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'DAHU_USER_PRICING_VERSION', '1.0.0' );
+define( 'DAHU_USER_PRICING_VERSION', '1.1.0' );
 define( 'DAHU_USER_PRICING_FILE', __FILE__ );
 define( 'DAHU_USER_PRICING_PATH', plugin_dir_path( __FILE__ ) );
 define( 'DAHU_USER_PRICING_URL', plugin_dir_url( __FILE__ ) );
@@ -276,10 +276,19 @@ add_action(
 				'file'       => DAHU_USER_PRICING_FILE,
 				'version'    => DAHU_USER_PRICING_VERSION,
 				'textdomain' => 'dahu-user-pricing',
+				'mark'       => array(
+					'view'  => '0 0 112 112',
+					'paths' => array(
+						'M58 8 L104 8 Q110 8 110 14 L110 58 L56 104 Q52 108 48 104 L8 64 Q4 60 8 56 Z',
+						'M30 74 a13 13 0 1 1 26 0',
+						'M81.0 28.0 a9.0 9.0 0 1 0 18.0 0 a9.0 9.0 0 1 0 -18.0 0',
+						'M35.0 56.0 a8.0 8.0 0 1 0 16.0 0 a8.0 8.0 0 1 0 -16.0 0',
+					),
+				),
 				/*
-				 * Les mots de l'accueil viennent d'ici : le fichier partagé est
-				 * recopié dans toute la famille et ne peut donc porter aucun
-				 * domaine de traduction.
+				 * The welcome screen's words come from here: the shared file is
+				 * copied byte for byte across the whole family, so it can carry
+				 * no text domain of its own.
 				 */
 				'strings'    => array(
 					'next'   => __( 'Next', 'dahu-user-pricing' ),
