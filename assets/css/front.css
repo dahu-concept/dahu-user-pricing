@@ -1,0 +1,89 @@
+/*
+ * Customer-facing styles: the price block, the view switch, the preview banner.
+ *
+ * Deliberately not the admin token block: this loads on the shop front, where
+ * the theme owns the palette and a plugin declaring colours on :root would be
+ * fighting it. What is here is structure — how the two prices and the label sit
+ * next to each other — plus the one thing that must be visible whatever the
+ * theme does: the banner saying a price preview is running.
+ *
+ * Sizes are relative (em) rather than absolute, so the block follows whatever
+ * type scale the theme sets for a price.
+ */
+
+.dahu-user-pricing-price {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: .15em .6em;
+}
+
+.dahu-user-pricing-price__label {
+	font-size: .85em;
+	font-weight: 400;
+	opacity: 1;
+}
+
+.dahu-user-pricing-price__amount {
+	font-variant-numeric: tabular-nums;
+}
+
+.dahu-user-pricing-price__tier,
+.dahu-user-pricing-price__public {
+	display: inline-flex;
+	align-items: baseline;
+	gap: .3em;
+}
+
+/*
+ * The public figure is secondary information next to the tier price. Its size
+ * says so; its colour is left to the theme, which already styles <del> for a
+ * sale price and would otherwise be overridden for no reason.
+ */
+.dahu-user-pricing-price__public {
+	font-size: .9em;
+}
+
+/*
+ * Public view: one price, the public one. No strike-through and nothing
+ * secondary beside it, so it reads exactly as it does to a visitor who is not
+ * logged in — which is the whole point of the view.
+ */
+.dahu-user-pricing-price--public .dahu-user-pricing-price__amount {
+	text-decoration: none;
+}
+
+.dahu-user-pricing-price__margin {
+	font-size: .85em;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+.dahu-user-pricing-switch {
+	display: inline-block;
+}
+
+/*
+ * The preview banner. The one place in this stylesheet that sets its own
+ * colours, because a warning that a theme can make invisible is not a warning.
+ * The amber is WooCommerce's own caution colour, and the contrast against the
+ * dark text is above 4.5:1.
+ */
+.dahu-user-pricing-preview-banner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: .75em;
+	padding: .6em 1em;
+	color: #1d2327;
+	background: #f6e2ab;
+	border-bottom: 2px solid #996800;
+	font-size: .95em;
+	line-height: 1.4;
+}
+
+.dahu-user-pricing-preview-banner a {
+	color: #1d2327;
+	text-decoration: underline;
+	font-weight: 600;
+}
