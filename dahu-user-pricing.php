@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name:       Dahu User Pricing
- * Plugin URI:        https://dahu-concept.fr
  * Description:       Per-account pricing for WooCommerce: named customer tiers, a price per tier on every product and variation, resale-margin display, a view switch between tier and public price, and admin-created order lines priced correctly net of tax.
  * Version:           1.1.0
  * Author:            Hugo Vial-Jaime
