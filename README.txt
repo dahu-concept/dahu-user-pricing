@@ -1,5 +1,5 @@
 === Ubac Customer Pricing ===
-Contributors: ubacconcept
+Contributors: dahuconcept
 Tags: customer pricing, bulk pricing, wholesale, b2b, trade prices
 Requires at least: 6.0
 Tested up to: 7.1
