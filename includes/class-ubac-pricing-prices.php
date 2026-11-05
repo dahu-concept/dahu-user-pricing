@@ -155,7 +155,21 @@ class Ubac_Pricing_Prices {
 
 		$nonce = isset( $_REQUEST['security'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['security'] ) ) : '';
 
-		self::$is_order_screen_request = ( '' !== $nonce && false !== wp_verify_nonce( $nonce, 'order-item' ) );
+		if ( '' === $nonce ) {
+			self::$is_order_screen_request = false;
+
+			return false;
+		}
+
+		// The result goes through a variable on purpose: a nonce whose answer
+		// is read straight inside a larger expression is the shape that hides
+		// an unchecked call, and a reader -- human or sniff -- cannot tell the
+		// two apart at a glance. Note that nothing is granted here: the nonce
+		// only says the request comes from the order screen, where prices are
+		// read differently.
+		$valide = wp_verify_nonce( $nonce, 'order-item' );
+
+		self::$is_order_screen_request = ( false !== $valide );
 
 		return self::$is_order_screen_request;
 	}
