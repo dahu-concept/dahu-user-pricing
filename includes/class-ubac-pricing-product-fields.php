@@ -12,7 +12,7 @@
  * deletes the meta, a zero stores a zero. This is the same distinction the
  * price resolution makes, and it only holds if both ends agree.
  *
- * @package DahuUserPricing
+ * @package UbacPricing
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -20,17 +20,17 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Admin product fields for tier prices.
  */
-class Dahu_User_Pricing_Product_Fields {
+class Ubac_Pricing_Product_Fields {
 
 	/**
 	 * Field name for the simple-product price of a tier.
 	 */
-	const FIELD_SIMPLE = 'dahu_user_pricing_price';
+	const FIELD_SIMPLE = 'ubac_pricing_price';
 
 	/**
 	 * Field name for the variation price of a tier.
 	 */
-	const FIELD_VARIATION = 'dahu_user_pricing_variation_price';
+	const FIELD_VARIATION = 'ubac_pricing_variation_price';
 
 	/**
 	 * Hook the fields and their saving.
@@ -53,7 +53,7 @@ class Dahu_User_Pricing_Product_Fields {
 	 */
 	public static function render_simple_fields() {
 
-		$tiers = Dahu_User_Pricing_Tiers::all();
+		$tiers = Ubac_Pricing_Tiers::all();
 
 		if ( ! $tiers ) {
 			return;
@@ -63,7 +63,7 @@ class Dahu_User_Pricing_Product_Fields {
 
 		foreach ( $tiers as $key => $tier ) {
 
-			$value = $product ? $product->get_meta( Dahu_User_Pricing_Tiers::price_meta_key( $key ), true ) : '';
+			$value = $product ? $product->get_meta( Ubac_Pricing_Tiers::price_meta_key( $key ), true ) : '';
 
 			woocommerce_wp_text_input(
 				array(
@@ -83,7 +83,7 @@ class Dahu_User_Pricing_Product_Fields {
 					'desc_tip'    => true,
 					'description' => esc_html__( 'Leave empty for this tier to pay the public price. Zero means free for this tier.', 'ubac-pricing' ),
 					'data_type'   => 'price',
-					'wrapper_class' => 'dahu-user-pricing-field',
+					'wrapper_class' => 'ubac-pricing-field',
 				)
 			);
 		}
@@ -101,7 +101,7 @@ class Dahu_User_Pricing_Product_Fields {
 
 		unset( $variation_data );
 
-		$tiers = Dahu_User_Pricing_Tiers::all();
+		$tiers = Ubac_Pricing_Tiers::all();
 
 		if ( ! $tiers ) {
 			return;
@@ -112,7 +112,7 @@ class Dahu_User_Pricing_Product_Fields {
 		foreach ( $tiers as $key => $tier ) {
 
 			$value = $object instanceof WC_Product
-				? $object->get_meta( Dahu_User_Pricing_Tiers::price_meta_key( $key ), true )
+				? $object->get_meta( Ubac_Pricing_Tiers::price_meta_key( $key ), true )
 				: '';
 
 			woocommerce_wp_text_input(
@@ -129,7 +129,7 @@ class Dahu_User_Pricing_Product_Fields {
 					'desc_tip'      => true,
 					'description'   => esc_html__( 'Leave empty to inherit the parent product, or the public price if it has none.', 'ubac-pricing' ),
 					'data_type'     => 'price',
-					'wrapper_class' => 'form-row form-row-full dahu-user-pricing-field',
+					'wrapper_class' => 'form-row form-row-full ubac-pricing-field',
 				)
 			);
 		}
@@ -162,7 +162,7 @@ class Dahu_User_Pricing_Product_Fields {
 			return;
 		}
 
-		foreach ( Dahu_User_Pricing_Tiers::keys() as $key ) {
+		foreach ( Ubac_Pricing_Tiers::keys() as $key ) {
 
 			$raw = isset( $submitted[ $key ] ) ? $submitted[ $key ] : '';
 
@@ -198,7 +198,7 @@ class Dahu_User_Pricing_Product_Fields {
 
 		$changed = false;
 
-		foreach ( Dahu_User_Pricing_Tiers::keys() as $key ) {
+		foreach ( Ubac_Pricing_Tiers::keys() as $key ) {
 
 			$raw = ( isset( $submitted[ $key ] ) && is_array( $submitted[ $key ] ) && isset( $submitted[ $key ][ $loop ] ) )
 				? $submitted[ $key ][ $loop ]
@@ -222,7 +222,7 @@ class Dahu_User_Pricing_Product_Fields {
 	 */
 	private static function apply_price( $product, $tier, $raw ) {
 
-		$meta_key = Dahu_User_Pricing_Tiers::price_meta_key( $tier );
+		$meta_key = Ubac_Pricing_Tiers::price_meta_key( $tier );
 		$existing = $product->get_meta( $meta_key, true );
 		$existing = is_scalar( $existing ) ? (string) $existing : '';
 

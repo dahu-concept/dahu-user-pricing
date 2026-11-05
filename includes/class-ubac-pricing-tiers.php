@@ -14,13 +14,13 @@
  * settings screen, with no built-in list and no limit.
  *
  * WHY A KEY IS PERMANENT. Prices live in product meta named after the key
- * (`_dahu_user_pricing_price_<key>`). A key that changed would leave every
+ * (`_ubac_pricing_price_<key>`). A key that changed would leave every
  * price filed under the old name unreachable, with nothing on screen to say
  * so. So the key is derived from the label once, at creation, and never again
  * — renaming the label is free, and the key just stops matching it. That is
  * the lesser evil: a slightly stale key is readable, lost prices are not.
  *
- * @package DahuUserPricing
+ * @package UbacPricing
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * The tier model.
  */
-class Dahu_User_Pricing_Tiers {
+class Ubac_Pricing_Tiers {
 
 	/**
 	 * Prefix of the per-tier product meta key.
@@ -37,7 +37,7 @@ class Dahu_User_Pricing_Tiers {
 	 * uninstaller all have to agree on it, and three copies of a string is
 	 * how they stop agreeing.
 	 */
-	const PRICE_META_PREFIX = '_dahu_user_pricing_price_';
+	const PRICE_META_PREFIX = '_ubac_pricing_price_';
 
 	/**
 	 * Longest a tier key may be.
@@ -55,7 +55,7 @@ class Dahu_User_Pricing_Tiers {
 	 */
 	public static function all() {
 
-		$tiers = Dahu_User_Pricing_Settings::get( 'tiers' );
+		$tiers = Ubac_Pricing_Settings::get( 'tiers' );
 
 		return is_array( $tiers ) ? $tiers : array();
 	}
@@ -201,7 +201,7 @@ class Dahu_User_Pricing_Tiers {
 	 * Remove a tier from the settings.
 	 *
 	 * WHAT THIS DELIBERATELY DOES NOT DO: delete the prices. Every
-	 * `_dahu_user_pricing_price_<key>` meta stays exactly where it is. A tier
+	 * `_ubac_pricing_price_<key>` meta stays exactly where it is. A tier
 	 * is usually deleted because somebody is reorganising, and recreating it
 	 * under the same key brings every price back; deleting a thousand prices
 	 * on a settings save would be irreversible and could not be undone from
@@ -217,7 +217,7 @@ class Dahu_User_Pricing_Tiers {
 	public static function delete( $key ) {
 
 		$key      = (string) $key;
-		$settings = Dahu_User_Pricing_Settings::all();
+		$settings = Ubac_Pricing_Settings::all();
 
 		if ( ! isset( $settings['tiers'][ $key ] ) ) {
 			return false;
@@ -232,7 +232,7 @@ class Dahu_User_Pricing_Tiers {
 			}
 		}
 
-		Dahu_User_Pricing_Settings::update( $settings );
+		Ubac_Pricing_Settings::update( $settings );
 
 		return true;
 	}

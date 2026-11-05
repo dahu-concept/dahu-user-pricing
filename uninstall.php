@@ -16,7 +16,7 @@
  * The prices are also harmless when left: they are meta on a product under a
  * name nothing else uses, and reinstalling the plugin finds them again.
  *
- * @package DahuUserPricing
+ * @package UbacPricing
  */
 
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
@@ -26,35 +26,35 @@ defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
  *
  * @return void
  */
-function dahu_user_pricing_uninstall_site() {
+function ubac_pricing_uninstall_site() {
 
 	// The welcome screen's own three flags.
 	//
 	// They are interface state, not the shop's data, which is why they sit
 	// BEFORE any “remove data on uninstall” guard: whatever a shop chose to
-	// keep, a reinstall has to greet it again. `includes/dahu-welcome.php`
+	// keep, a reinstall has to greet it again. `includes/ubac-welcome.php`
 	// writes them with update_option(), so they outlive the plugin unless
 	// they are deleted here — and the welcome screen and the guided tour
 	// would then stay silent for good, with nothing on screen to explain why.
-	delete_option( 'dahu_welcome_seen_dahu-user-pricing' );
-	delete_option( 'dahu_welcome_pending_dahu-user-pricing' );
-	delete_option( 'dahu_welcome_tour_dahu-user-pricing' );
+	delete_option( 'ubac_welcome_seen_ubac-pricing' );
+	delete_option( 'ubac_welcome_pending_ubac-pricing' );
+	delete_option( 'ubac_welcome_tour_ubac-pricing' );
 
 	global $wpdb;
 
-	$settings = get_option( 'dahu_user_pricing_settings', array() );
+	$settings = get_option( 'ubac_pricing_settings', array() );
 	$purge    = is_array( $settings ) && ! empty( $settings['delete_data_on_uninstall'] );
 
-	delete_option( 'dahu_user_pricing_settings' );
+	delete_option( 'ubac_pricing_settings' );
 
 	if ( ! $purge ) {
 		return;
 	}
 
-	// The prefix is the one in Dahu_User_Pricing_Tiers::PRICE_META_PREFIX, and
+	// The prefix is the one in Ubac_Pricing_Tiers::PRICE_META_PREFIX, and
 	// it is written out here because the uninstaller runs with the plugin's
 	// classes unloaded. If one of the two ever changes, the other has to.
-	$like = $wpdb->esc_like( '_dahu_user_pricing_price_' ) . '%';
+	$like = $wpdb->esc_like( '_ubac_pricing_price_' ) . '%';
 
 	$sql = $wpdb->prepare(
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name, not data.
@@ -67,7 +67,7 @@ function dahu_user_pricing_uninstall_site() {
 
 if ( is_multisite() ) {
 
-	$dahu_user_pricing_sites = get_sites(
+	$ubac_pricing_sites = get_sites(
 		array(
 			'fields'   => 'ids',
 			'number'   => 0,
@@ -79,15 +79,15 @@ if ( is_multisite() ) {
 		)
 	);
 
-	foreach ( $dahu_user_pricing_sites as $dahu_user_pricing_site_id ) {
+	foreach ( $ubac_pricing_sites as $ubac_pricing_site_id ) {
 
-		switch_to_blog( (int) $dahu_user_pricing_site_id );
-		dahu_user_pricing_uninstall_site();
+		switch_to_blog( (int) $ubac_pricing_site_id );
+		ubac_pricing_uninstall_site();
 		restore_current_blog();
 	}
 
-	unset( $dahu_user_pricing_sites, $dahu_user_pricing_site_id );
+	unset( $ubac_pricing_sites, $ubac_pricing_site_id );
 
 } else {
-	dahu_user_pricing_uninstall_site();
+	ubac_pricing_uninstall_site();
 }

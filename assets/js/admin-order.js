@@ -27,7 +27,7 @@
 		return;
 	}
 
-	var BUTTON_CLASS = 'js-dahu-user-pricing-reprice';
+	var BUTTON_CLASS = 'js-ubac-pricing-reprice';
 
 	/**
 	 * The customer currently chosen in the order screen's field.
@@ -81,7 +81,7 @@
 			return;
 		}
 
-		options.data += '&dahu_user_pricing_customer=' + chosenCustomer();
+		options.data += '&ubac_pricing_customer=' + chosenCustomer();
 	} );
 
 	/* --- 2. Offer a reprice when the customer changes. ------------------- */
@@ -183,13 +183,13 @@
 	function showFailure() {
 		var panel = $( '#woocommerce-order-items' ).find( '.inside' ).first();
 
-		if ( ! panel.length || panel.find( '.js-dahu-user-pricing-failed' ).length ) {
+		if ( ! panel.length || panel.find( '.js-ubac-pricing-failed' ).length ) {
 			return;
 		}
 
 		panel.prepend(
 			$( '<div/>', {
-				'class': 'notice notice-error inline js-dahu-user-pricing-failed'
+				'class': 'notice notice-error inline js-ubac-pricing-failed'
 			} ).append( $( '<p/>', { text: config.failed } ) )
 		);
 	}
@@ -212,7 +212,7 @@
 		block();
 
 		$.post( config.ajaxUrl, {
-			action: 'dahu_user_pricing_recalc_order',
+			action: 'ubac_pricing_recalc_order',
 			security: config.nonce,
 			order_id: order,
 			customer_user: chosenCustomer()
@@ -226,4 +226,4 @@
 				showFailure();
 			} );
 	} );
-} )( jQuery, window.dahuUserPricingOrder );
+} )( jQuery, window.ubacUserPricingOrder );

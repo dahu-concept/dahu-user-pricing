@@ -7,7 +7,7 @@
  * computed, and did nothing at all on its own. That is fine for one shop that
  * owns a licence for the other plugin, and useless to anybody else — a pricing
  * plugin that cannot name a price is not installable. So a tier price is a
- * value stored here, on the product, and `dahu_user_pricing_price` is the way
+ * value stored here, on the product, and `ubac_pricing_price` is the way
  * for another plugin to supply one instead.
  *
  * HOW IT REACHES WOOCOMMERCE. Only `price` is filtered; `regular_price` is
@@ -26,9 +26,9 @@
  * price: a tier price is a negotiated figure, not a discount off the public
  * one, and compounding them would make a reseller's price depend on a
  * promotion they never agreed to. A shop that wants the lower of the two can
- * say so in three lines on `dahu_user_pricing_price`.
+ * say so in three lines on `ubac_pricing_price`.
  *
- * @package DahuUserPricing
+ * @package UbacPricing
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -36,7 +36,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Per-tier prices and their WooCommerce integration.
  */
-class Dahu_User_Pricing_Prices {
+class Ubac_Pricing_Prices {
 
 	/**
 	 * Whether this request is the order screen editing an order, memoised.
@@ -185,7 +185,7 @@ class Dahu_User_Pricing_Prices {
 			return $price;
 		}
 
-		$tier = Dahu_User_Pricing_Context::get_tier();
+		$tier = Ubac_Pricing_Context::get_tier();
 
 		if ( null === $tier ) {
 			return $price;
@@ -231,10 +231,10 @@ class Dahu_User_Pricing_Prices {
 			return $hash;
 		}
 
-		$tier = Dahu_User_Pricing_Context::get_tier();
+		$tier = Ubac_Pricing_Context::get_tier();
 
 		if ( null !== $tier ) {
-			$hash['dahu_user_pricing_tier'] = $tier;
+			$hash['ubac_pricing_tier'] = $tier;
 		}
 
 		return $hash;
@@ -260,7 +260,7 @@ class Dahu_User_Pricing_Prices {
 
 		$price = null;
 
-		if ( $product instanceof WC_Product && Dahu_User_Pricing_Tiers::exists( $tier ) ) {
+		if ( $product instanceof WC_Product && Ubac_Pricing_Tiers::exists( $tier ) ) {
 
 			$price = self::read_stored_price( $product, $tier );
 
@@ -289,7 +289,7 @@ class Dahu_User_Pricing_Prices {
 		 * @param string     $tier     Tier key.
 		 * @param float      $quantity Quantity being priced, 1 when unknown.
 		 */
-		$price = apply_filters( 'dahu_user_pricing_price', $price, $product, $tier, max( 0.0, (float) $quantity ) );
+		$price = apply_filters( 'ubac_pricing_price', $price, $product, $tier, max( 0.0, (float) $quantity ) );
 
 		return null === $price ? null : (float) $price;
 	}
@@ -308,7 +308,7 @@ class Dahu_User_Pricing_Prices {
 	 */
 	private static function read_stored_price( $product, $tier ) {
 
-		$raw = $product->get_meta( Dahu_User_Pricing_Tiers::price_meta_key( $tier ), true );
+		$raw = $product->get_meta( Ubac_Pricing_Tiers::price_meta_key( $tier ), true );
 
 		if ( ! is_scalar( $raw ) ) {
 			return null;

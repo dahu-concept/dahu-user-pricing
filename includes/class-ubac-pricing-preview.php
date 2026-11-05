@@ -23,7 +23,7 @@
  * the way out. A warning alone is what the earlier version had, and a warning
  * does not stop a tired person at nine in the evening.
  *
- * @package DahuUserPricing
+ * @package UbacPricing
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -31,11 +31,11 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Tier preview for managers.
  */
-class Dahu_User_Pricing_Preview {
+class Ubac_Pricing_Preview {
 
-	const COOKIE_NAME  = 'dahu_user_pricing_preview';
-	const QUERY_VAR    = 'dahu_user_pricing_preview_tier';
-	const NONCE_ACTION = 'dahu_user_pricing_preview';
+	const COOKIE_NAME  = 'ubac_pricing_preview';
+	const QUERY_VAR    = 'ubac_pricing_preview_tier';
+	const NONCE_ACTION = 'ubac_pricing_preview';
 
 	/**
 	 * Hook the preview.
@@ -82,13 +82,13 @@ class Dahu_User_Pricing_Preview {
 			return null;
 		}
 
-		if ( ! Dahu_User_Pricing_Context::is_manager() ) {
+		if ( ! Ubac_Pricing_Context::is_manager() ) {
 			return null;
 		}
 
 		$requested = sanitize_key( wp_unslash( $_COOKIE[ self::COOKIE_NAME ] ) );
 
-		return Dahu_User_Pricing_Tiers::exists( $requested ) ? $requested : null;
+		return Ubac_Pricing_Tiers::exists( $requested ) ? $requested : null;
 	}
 
 	/**
@@ -116,14 +116,14 @@ class Dahu_User_Pricing_Preview {
 			return;
 		}
 
-		if ( ! Dahu_User_Pricing_Context::is_manager() ) {
+		if ( ! Ubac_Pricing_Context::is_manager() ) {
 			return;
 		}
 
 		$requested = sanitize_key( wp_unslash( $_GET[ self::QUERY_VAR ] ) );
 		$path      = COOKIEPATH ? COOKIEPATH : '/';
 
-		if ( '' === $requested || '0' === $requested || ! Dahu_User_Pricing_Tiers::exists( $requested ) ) {
+		if ( '' === $requested || '0' === $requested || ! Ubac_Pricing_Tiers::exists( $requested ) ) {
 
 			setcookie( self::COOKIE_NAME, '', time() - HOUR_IN_SECONDS, $path, COOKIE_DOMAIN, is_ssl(), true );
 			unset( $_COOKIE[ self::COOKIE_NAME ] );
@@ -136,7 +136,7 @@ class Dahu_User_Pricing_Preview {
 			$_COOKIE[ self::COOKIE_NAME ] = $requested;
 		}
 
-		Dahu_User_Pricing_Context::flush();
+		Ubac_Pricing_Context::flush();
 
 		wp_safe_redirect( remove_query_arg( array( self::QUERY_VAR, '_wpnonce' ) ) );
 		exit;
@@ -150,11 +150,11 @@ class Dahu_User_Pricing_Preview {
 	 */
 	public static function add_toolbar_items( $wp_admin_bar ) {
 
-		if ( ! Dahu_User_Pricing_Context::is_manager() ) {
+		if ( ! Ubac_Pricing_Context::is_manager() ) {
 			return;
 		}
 
-		$tiers = Dahu_User_Pricing_Tiers::all();
+		$tiers = Ubac_Pricing_Tiers::all();
 
 		if ( ! $tiers ) {
 			return;
@@ -164,13 +164,13 @@ class Dahu_User_Pricing_Preview {
 
 		$wp_admin_bar->add_node(
 			array(
-				'id'    => 'dahu-user-pricing-preview',
+				'id'    => 'ubac-pricing-preview',
 				'title' => null === $current
 					? esc_html__( 'Preview prices', 'ubac-pricing' )
 					: sprintf(
 						/* translators: %s: name of the tier being previewed. */
 						esc_html__( 'Previewing: %s', 'ubac-pricing' ),
-						Dahu_User_Pricing_Tiers::label( $current )
+						Ubac_Pricing_Tiers::label( $current )
 					),
 			)
 		);
@@ -179,8 +179,8 @@ class Dahu_User_Pricing_Preview {
 
 			$wp_admin_bar->add_node(
 				array(
-					'id'     => 'dahu-user-pricing-preview-' . sanitize_key( $key ),
-					'parent' => 'dahu-user-pricing-preview',
+					'id'     => 'ubac-pricing-preview-' . sanitize_key( $key ),
+					'parent' => 'ubac-pricing-preview',
 					'title'  => ( $key === $current ? '✓ ' : '' ) . esc_html( $tier['label'] ),
 					'href'   => esc_url( self::switch_url( $key ) ),
 				)
@@ -191,8 +191,8 @@ class Dahu_User_Pricing_Preview {
 
 			$wp_admin_bar->add_node(
 				array(
-					'id'     => 'dahu-user-pricing-preview-stop',
-					'parent' => 'dahu-user-pricing-preview',
+					'id'     => 'ubac-pricing-preview-stop',
+					'parent' => 'ubac-pricing-preview',
 					'title'  => esc_html__( 'Stop previewing', 'ubac-pricing' ),
 					'href'   => esc_url( self::switch_url( '0' ) ),
 				)
@@ -251,12 +251,12 @@ class Dahu_User_Pricing_Preview {
 		$rendered_on[ $hook ] = true;
 
 		printf(
-			'<div class="dahu-user-pricing-preview-banner" role="status"><span>%1$s</span> <a href="%2$s" rel="nofollow">%3$s</a></div>',
+			'<div class="ubac-pricing-preview-banner" role="status"><span>%1$s</span> <a href="%2$s" rel="nofollow">%3$s</a></div>',
 			esc_html(
 				sprintf(
 					/* translators: %s: name of the tier being previewed. */
 					__( 'Previewing prices as %s. Prices shown are really this tier\'s prices, and an order cannot be placed until you stop.', 'ubac-pricing' ),
-					Dahu_User_Pricing_Tiers::label( $tier )
+					Ubac_Pricing_Tiers::label( $tier )
 				)
 			),
 			esc_url( self::switch_url( '0' ) ),
@@ -283,7 +283,7 @@ class Dahu_User_Pricing_Preview {
 			return;
 		}
 
-		$errors->add( 'dahu_user_pricing_preview_active', self::block_message() );
+		$errors->add( 'ubac_pricing_preview_active', self::block_message() );
 	}
 
 	/**
@@ -306,7 +306,7 @@ class Dahu_User_Pricing_Preview {
 			return;
 		}
 
-		$errors->add( 'dahu_user_pricing_preview_active', self::block_message() );
+		$errors->add( 'ubac_pricing_preview_active', self::block_message() );
 	}
 
 	/**

@@ -1,4 +1,4 @@
-# Dahu User Pricing
+# Ubac User Pricing
 
 Des prix par compte pour WooCommerce : des paliers tarifaires que vous nommez,
 un prix par palier sur chaque produit et chaque variation, le prix public et la
@@ -74,7 +74,7 @@ partir de lui que la marge est calculée.
 Un prix soldé **ne s'empile pas** sur un prix de palier : les cumuler ferait
 dépendre le prix d'un revendeur d'une promotion qu'il n'a jamais négociée. Une
 boutique qui veut le plus bas des deux le dit en trois lignes sur le filtre
-`dahu_user_pricing_price`.
+`ubac_pricing_price`.
 
 ## Ce que voit le client
 
@@ -97,7 +97,7 @@ page sans exécuter de script.
 
 ## La bascule d'affichage
 
-`[dahu_user_pricing_view_switch]` affiche un lien qui fait basculer un compte
+`[ubac_pricing_view_switch]` affiche un lien qui fait basculer un compte
 entre ses propres prix et les prix publics. Rien ne le place automatiquement :
 une extension qui injecterait une commande dans l'en-tête d'un thème devinerait
 une mise en page qu'elle ne voit pas.
@@ -153,26 +153,26 @@ extensions : elle reconnaît leurs métas pour ne pas les abîmer.
 
 ```php
 // Fournir un prix de palier depuis ailleurs. Renvoyer null pour « aucun prix ».
-add_filter( 'dahu_user_pricing_price', function ( $price, $product, $tier, $quantity ) {
+add_filter( 'ubac_pricing_price', function ( $price, $product, $tier, $quantity ) {
 	return $price;
 }, 10, 4 );
 
 // Les métas qui marquent une ligne dont le prix appartient à une ligne parente.
-add_filter( 'dahu_user_pricing_child_line_metas', function ( $metas ) {
+add_filter( 'ubac_pricing_child_line_metas', function ( $metas ) {
 	$metas[] = '_mon_lot_parent';
 	return $metas;
 } );
 
 // Autoriser ou refuser la retarification d'une commande.
-add_filter( 'dahu_user_pricing_may_reprice_order', function ( $allowed, $order ) {
+add_filter( 'ubac_pricing_may_reprice_order', function ( $allowed, $order ) {
 	return $allowed;
 }, 10, 2 );
 ```
 
 ```php
-dahu_user_pricing_get_tier( $user_id = null );          // clé de palier, ou null
-dahu_user_pricing_get_price_labels( $tier = null );      // array{public, tier}
-dahu_user_pricing_resolve_line_pricing( $product, $user, $quantity = 1 );
+ubac_pricing_get_tier( $user_id = null );          // clé de palier, ou null
+ubac_pricing_get_price_labels( $tier = null );      // array{public, tier}
+ubac_pricing_resolve_line_pricing( $product, $user, $quantity = 1 );
 ```
 
 La dernière est ce dont a besoin du code qui construit une commande : un devis,

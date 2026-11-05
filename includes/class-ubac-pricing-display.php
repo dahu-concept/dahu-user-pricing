@@ -17,7 +17,7 @@
  * account will be billed. A switch that changed the charged price would be a
  * discount control disguised as a display preference.
  *
- * @package DahuUserPricing
+ * @package UbacPricing
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -25,17 +25,17 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Front-end rendering of tier prices.
  */
-class Dahu_User_Pricing_Display {
+class Ubac_Pricing_Display {
 
 	/**
 	 * Query argument carrying a view change.
 	 */
-	const SWITCH_VAR = 'dahu_user_pricing_view';
+	const SWITCH_VAR = 'ubac_pricing_view';
 
 	/**
 	 * Nonce action protecting a view change.
 	 */
-	const SWITCH_NONCE = 'dahu_user_pricing_switch_view';
+	const SWITCH_NONCE = 'ubac_pricing_switch_view';
 
 	/**
 	 * Hook the display.
@@ -49,7 +49,7 @@ class Dahu_User_Pricing_Display {
 		add_filter( 'body_class', array( __CLASS__, 'filter_body_class' ) );
 		add_filter( 'woocommerce_get_price_html', array( __CLASS__, 'filter_price_html' ), 20, 2 );
 
-		add_shortcode( 'dahu_user_pricing_view_switch', array( __CLASS__, 'render_switch' ) );
+		add_shortcode( 'ubac_pricing_view_switch', array( __CLASS__, 'render_switch' ) );
 
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_front' ) );
 	}
@@ -61,15 +61,15 @@ class Dahu_User_Pricing_Display {
 	 */
 	public static function enqueue_front() {
 
-		if ( ! Dahu_User_Pricing_Context::can_see_tier_pricing() ) {
+		if ( ! Ubac_Pricing_Context::can_see_tier_pricing() ) {
 			return;
 		}
 
 		wp_enqueue_style(
-			'dahu-user-pricing',
-			DAHU_USER_PRICING_URL . 'assets/css/front.css',
+			'ubac-pricing',
+			UBAC_PRICING_URL . 'assets/css/front.css',
 			array(),
-			DAHU_USER_PRICING_VERSION
+			UBAC_PRICING_VERSION
 		);
 	}
 
@@ -81,7 +81,7 @@ class Dahu_User_Pricing_Display {
 	 */
 	public static function filter_body_class( $classes ) {
 
-		return array_merge( (array) $classes, Dahu_User_Pricing_Context::body_classes() );
+		return array_merge( (array) $classes, Ubac_Pricing_Context::body_classes() );
 	}
 
 	/**
@@ -105,25 +105,25 @@ class Dahu_User_Pricing_Display {
 			return;
 		}
 
-		if ( ! Dahu_User_Pricing_Settings::get( 'view_switch' ) ) {
+		if ( ! Ubac_Pricing_Settings::get( 'view_switch' ) ) {
 			return;
 		}
 
-		if ( ! Dahu_User_Pricing_Context::can_see_tier_pricing() ) {
+		if ( ! Ubac_Pricing_Context::can_see_tier_pricing() ) {
 			return;
 		}
 
 		$requested = sanitize_key( wp_unslash( $_GET[ self::SWITCH_VAR ] ) );
 
-		$value = ( Dahu_User_Pricing_Context::VIEW_PUBLIC === $requested )
-			? Dahu_User_Pricing_Context::VIEW_PUBLIC
-			: Dahu_User_Pricing_Context::VIEW_TIER;
+		$value = ( Ubac_Pricing_Context::VIEW_PUBLIC === $requested )
+			? Ubac_Pricing_Context::VIEW_PUBLIC
+			: Ubac_Pricing_Context::VIEW_TIER;
 
 		// A session cookie: a view preference that outlived the browser being
 		// closed would have somebody quoting public prices to themselves for
 		// days without remembering why.
-		setcookie( Dahu_User_Pricing_Context::VIEW_COOKIE, $value, 0, COOKIEPATH ? COOKIEPATH : '/', COOKIE_DOMAIN, is_ssl(), true );
-		$_COOKIE[ Dahu_User_Pricing_Context::VIEW_COOKIE ] = $value;
+		setcookie( Ubac_Pricing_Context::VIEW_COOKIE, $value, 0, COOKIEPATH ? COOKIEPATH : '/', COOKIE_DOMAIN, is_ssl(), true );
+		$_COOKIE[ Ubac_Pricing_Context::VIEW_COOKIE ] = $value;
 
 		wp_safe_redirect( remove_query_arg( array( self::SWITCH_VAR, '_wpnonce' ) ) );
 		exit;
@@ -141,21 +141,21 @@ class Dahu_User_Pricing_Display {
 	 */
 	public static function render_switch() {
 
-		if ( ! Dahu_User_Pricing_Settings::get( 'view_switch' ) ) {
+		if ( ! Ubac_Pricing_Settings::get( 'view_switch' ) ) {
 			return '';
 		}
 
-		if ( ! Dahu_User_Pricing_Context::can_see_tier_pricing() ) {
+		if ( ! Ubac_Pricing_Context::can_see_tier_pricing() ) {
 			return '';
 		}
 
-		$mode = Dahu_User_Pricing_Context::view_mode();
+		$mode = Ubac_Pricing_Context::view_mode();
 
-		$target = ( Dahu_User_Pricing_Context::VIEW_TIER === $mode )
-			? Dahu_User_Pricing_Context::VIEW_PUBLIC
-			: Dahu_User_Pricing_Context::VIEW_TIER;
+		$target = ( Ubac_Pricing_Context::VIEW_TIER === $mode )
+			? Ubac_Pricing_Context::VIEW_PUBLIC
+			: Ubac_Pricing_Context::VIEW_TIER;
 
-		$text = ( Dahu_User_Pricing_Context::VIEW_TIER === $mode )
+		$text = ( Ubac_Pricing_Context::VIEW_TIER === $mode )
 			? esc_html__( 'Show public prices', 'ubac-pricing' )
 			: esc_html__( 'Show my prices', 'ubac-pricing' );
 
@@ -165,7 +165,7 @@ class Dahu_User_Pricing_Display {
 		);
 
 		return sprintf(
-			'<a class="dahu-user-pricing-switch" href="%1$s" rel="nofollow">%2$s</a>',
+			'<a class="ubac-pricing-switch" href="%1$s" rel="nofollow">%2$s</a>',
 			esc_url( $url ),
 			$text
 		);
@@ -180,7 +180,7 @@ class Dahu_User_Pricing_Display {
 	 */
 	public static function filter_price_html( $price_html, $product ) {
 
-		if ( ! Dahu_User_Pricing_Prices::is_active() ) {
+		if ( ! Ubac_Pricing_Prices::is_active() ) {
 			return $price_html;
 		}
 
@@ -188,17 +188,17 @@ class Dahu_User_Pricing_Display {
 			return $price_html;
 		}
 
-		if ( ! Dahu_User_Pricing_Context::can_see_tier_pricing() ) {
+		if ( ! Ubac_Pricing_Context::can_see_tier_pricing() ) {
 			return $price_html;
 		}
 
-		$tier = Dahu_User_Pricing_Context::get_tier();
+		$tier = Ubac_Pricing_Context::get_tier();
 
 		if ( null === $tier ) {
 			return $price_html;
 		}
 
-		$labels = Dahu_User_Pricing_Tiers::get_labels( $tier );
+		$labels = Ubac_Pricing_Tiers::get_labels( $tier );
 
 		if ( ! $labels ) {
 			return $price_html;
@@ -208,8 +208,8 @@ class Dahu_User_Pricing_Display {
 			return self::render_range( $product, $price_html, $labels );
 		}
 
-		$tier_price   = Dahu_User_Pricing_Prices::get_tier_price( $product, $tier );
-		$public_price = Dahu_User_Pricing_Prices::get_public_price( $product );
+		$tier_price   = Ubac_Pricing_Prices::get_tier_price( $product, $tier );
+		$public_price = Ubac_Pricing_Prices::get_public_price( $product );
 
 		if ( null === $tier_price || null === $public_price ) {
 			return $price_html;
@@ -254,7 +254,7 @@ class Dahu_User_Pricing_Display {
 	 */
 	private static function render_range( $product, $price_html, $labels ) {
 
-		if ( Dahu_User_Pricing_Context::VIEW_PUBLIC !== Dahu_User_Pricing_Context::view_mode() ) {
+		if ( Ubac_Pricing_Context::VIEW_PUBLIC !== Ubac_Pricing_Context::view_mode() ) {
 			return self::label_only( $price_html, $labels['tier'] );
 		}
 
@@ -286,12 +286,12 @@ class Dahu_User_Pricing_Display {
 			return '';
 		}
 
-		Dahu_User_Pricing_Prices::suspend();
+		Ubac_Pricing_Prices::suspend();
 
 		try {
 			$prices = $product->get_variation_prices( true );
 		} finally {
-			Dahu_User_Pricing_Prices::resume();
+			Ubac_Pricing_Prices::resume();
 		}
 
 		if ( empty( $prices['price'] ) ) {
@@ -320,7 +320,7 @@ class Dahu_User_Pricing_Display {
 		}
 
 		return sprintf(
-			'<span class="dahu-user-pricing-price"><span class="dahu-user-pricing-price__label">%1$s</span>%2$s</span>',
+			'<span class="ubac-pricing-price"><span class="ubac-pricing-price__label">%1$s</span>%2$s</span>',
 			esc_html( $label ),
 			$price_html
 		);
@@ -342,10 +342,10 @@ class Dahu_User_Pricing_Display {
 
 		$suffix = $product->get_price_suffix( $tier_price, 1 );
 
-		if ( Dahu_User_Pricing_Context::VIEW_PUBLIC === Dahu_User_Pricing_Context::view_mode() ) {
+		if ( Ubac_Pricing_Context::VIEW_PUBLIC === Ubac_Pricing_Context::view_mode() ) {
 
 			return sprintf(
-				'<span class="dahu-user-pricing-price dahu-user-pricing-price--public">%1$s<span class="dahu-user-pricing-price__amount">%2$s</span>%3$s</span>',
+				'<span class="ubac-pricing-price ubac-pricing-price--public">%1$s<span class="ubac-pricing-price__amount">%2$s</span>%3$s</span>',
 				self::label_markup( $labels['public'] ),
 				wp_kses_post( wc_price( $public_display ) ),
 				wp_kses_post( $product->get_price_suffix( $public_price, 1 ) )
@@ -353,7 +353,7 @@ class Dahu_User_Pricing_Display {
 		}
 
 		$parts = sprintf(
-			'<span class="dahu-user-pricing-price__tier">%1$s<ins class="dahu-user-pricing-price__amount">%2$s</ins>%3$s</span>',
+			'<span class="ubac-pricing-price__tier">%1$s<ins class="ubac-pricing-price__amount">%2$s</ins>%3$s</span>',
 			self::label_markup( $labels['tier'] ),
 			wp_kses_post( wc_price( $tier_display ) ),
 			wp_kses_post( $suffix )
@@ -365,7 +365,7 @@ class Dahu_User_Pricing_Display {
 		if ( self::differs( $tier_display, $public_display ) ) {
 
 			$parts .= sprintf(
-				' <span class="dahu-user-pricing-price__public">%1$s<del class="dahu-user-pricing-price__amount">%2$s</del></span>',
+				' <span class="ubac-pricing-price__public">%1$s<del class="ubac-pricing-price__amount">%2$s</del></span>',
 				self::label_markup( $labels['public'] ),
 				wp_kses_post( wc_price( $public_display ) )
 			);
@@ -373,7 +373,7 @@ class Dahu_User_Pricing_Display {
 			$parts .= self::margin_markup( $tier_display, $public_display );
 		}
 
-		return '<span class="dahu-user-pricing-price">' . $parts . '</span>';
+		return '<span class="ubac-pricing-price">' . $parts . '</span>';
 	}
 
 	/**
@@ -389,7 +389,7 @@ class Dahu_User_Pricing_Display {
 		}
 
 		return sprintf(
-			'<span class="dahu-user-pricing-price__label">%s</span>',
+			'<span class="ubac-pricing-price__label">%s</span>',
 			esc_html( $label )
 		);
 	}
@@ -425,7 +425,7 @@ class Dahu_User_Pricing_Display {
 	 */
 	private static function margin_markup( $tier_display, $public_display ) {
 
-		$mode = Dahu_User_Pricing_Settings::get( 'margin_display' );
+		$mode = Ubac_Pricing_Settings::get( 'margin_display' );
 
 		if ( 'percent' === $mode ) {
 
@@ -460,7 +460,7 @@ class Dahu_User_Pricing_Display {
 		}
 
 		return sprintf(
-			' <span class="dahu-user-pricing-price__margin">%s</span>',
+			' <span class="ubac-pricing-price__margin">%s</span>',
 			$text
 		);
 	}

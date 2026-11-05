@@ -14,16 +14,16 @@
  * WC requires at least: 7.0
  * WC tested up to:   11.2
  *
- * @package DahuUserPricing
+ * @package UbacPricing
  */
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'DAHU_USER_PRICING_VERSION', '1.1.0' );
-define( 'DAHU_USER_PRICING_FILE', __FILE__ );
-define( 'DAHU_USER_PRICING_PATH', plugin_dir_path( __FILE__ ) );
-define( 'DAHU_USER_PRICING_URL', plugin_dir_url( __FILE__ ) );
-define( 'DAHU_USER_PRICING_SETTINGS_PAGE', 'dahu-user-pricing' );
+define( 'UBAC_PRICING_VERSION', '1.1.0' );
+define( 'UBAC_PRICING_FILE', __FILE__ );
+define( 'UBAC_PRICING_PATH', plugin_dir_path( __FILE__ ) );
+define( 'UBAC_PRICING_URL', plugin_dir_url( __FILE__ ) );
+define( 'UBAC_PRICING_SETTINGS_PAGE', 'ubac-pricing' );
 
 /* -------------------------------------------------------------------------
  * Translations
@@ -65,38 +65,38 @@ add_action(
  * Bootstrap
  * ---------------------------------------------------------------------- */
 
-add_action( 'plugins_loaded', 'dahu_user_pricing_bootstrap' );
+add_action( 'plugins_loaded', 'ubac_pricing_bootstrap' );
 
 /**
  * Load the plugin once WooCommerce is confirmed present.
  *
  * @return void
  */
-function dahu_user_pricing_bootstrap() {
+function ubac_pricing_bootstrap() {
 
 	if ( ! class_exists( 'WooCommerce' ) ) {
-		add_action( 'admin_notices', 'dahu_user_pricing_missing_wc_notice' );
+		add_action( 'admin_notices', 'ubac_pricing_missing_wc_notice' );
 		return;
 	}
 
-	require_once DAHU_USER_PRICING_PATH . 'includes/class-dahu-user-pricing-settings.php';
-	require_once DAHU_USER_PRICING_PATH . 'includes/class-dahu-user-pricing-tiers.php';
-	require_once DAHU_USER_PRICING_PATH . 'includes/class-dahu-user-pricing-context.php';
-	require_once DAHU_USER_PRICING_PATH . 'includes/class-dahu-user-pricing-prices.php';
-	require_once DAHU_USER_PRICING_PATH . 'includes/class-dahu-user-pricing-product-fields.php';
-	require_once DAHU_USER_PRICING_PATH . 'includes/class-dahu-user-pricing-display.php';
-	require_once DAHU_USER_PRICING_PATH . 'includes/class-dahu-user-pricing-preview.php';
-	require_once DAHU_USER_PRICING_PATH . 'includes/class-dahu-user-pricing-order.php';
-	require_once DAHU_USER_PRICING_PATH . 'includes/class-dahu-user-pricing-admin-screens.php';
+	require_once UBAC_PRICING_PATH . 'includes/class-ubac-pricing-settings.php';
+	require_once UBAC_PRICING_PATH . 'includes/class-ubac-pricing-tiers.php';
+	require_once UBAC_PRICING_PATH . 'includes/class-ubac-pricing-context.php';
+	require_once UBAC_PRICING_PATH . 'includes/class-ubac-pricing-prices.php';
+	require_once UBAC_PRICING_PATH . 'includes/class-ubac-pricing-product-fields.php';
+	require_once UBAC_PRICING_PATH . 'includes/class-ubac-pricing-display.php';
+	require_once UBAC_PRICING_PATH . 'includes/class-ubac-pricing-preview.php';
+	require_once UBAC_PRICING_PATH . 'includes/class-ubac-pricing-order.php';
+	require_once UBAC_PRICING_PATH . 'includes/class-ubac-pricing-admin-screens.php';
 
-	Dahu_User_Pricing_Settings::init();
-	Dahu_User_Pricing_Context::init();
-	Dahu_User_Pricing_Preview::init();
-	Dahu_User_Pricing_Prices::init();
-	Dahu_User_Pricing_Product_Fields::init();
-	Dahu_User_Pricing_Display::init();
-	Dahu_User_Pricing_Order::init();
-	Dahu_User_Pricing_Admin_Screens::init();
+	Ubac_Pricing_Settings::init();
+	Ubac_Pricing_Context::init();
+	Ubac_Pricing_Preview::init();
+	Ubac_Pricing_Prices::init();
+	Ubac_Pricing_Product_Fields::init();
+	Ubac_Pricing_Display::init();
+	Ubac_Pricing_Order::init();
+	Ubac_Pricing_Admin_Screens::init();
 }
 
 /**
@@ -104,7 +104,7 @@ function dahu_user_pricing_bootstrap() {
  *
  * @return void
  */
-function dahu_user_pricing_missing_wc_notice() {
+function ubac_pricing_missing_wc_notice() {
 
 	if ( ! current_user_can( 'activate_plugins' ) ) {
 		return;
@@ -113,7 +113,7 @@ function dahu_user_pricing_missing_wc_notice() {
 	printf(
 		'<div class="notice notice-error"><p>%s</p></div>',
 		esc_html__(
-			'Dahu User Pricing requires WooCommerce to be installed and active.',
+			'Ubac User Pricing requires WooCommerce to be installed and active.',
 			'ubac-pricing'
 		)
 	);
@@ -138,13 +138,13 @@ function dahu_user_pricing_missing_wc_notice() {
  * @param string|null $tier Tier key, or null for the current user's tier.
  * @return array{public: string, tier: string}|null Null if the tier is unknown.
  */
-function dahu_user_pricing_get_price_labels( $tier = null ) {
+function ubac_pricing_get_price_labels( $tier = null ) {
 
 	if ( null === $tier ) {
-		return Dahu_User_Pricing_Context::get_price_labels();
+		return Ubac_Pricing_Context::get_price_labels();
 	}
 
-	return Dahu_User_Pricing_Tiers::get_labels( (string) $tier );
+	return Ubac_Pricing_Tiers::get_labels( (string) $tier );
 }
 
 /**
@@ -153,13 +153,13 @@ function dahu_user_pricing_get_price_labels( $tier = null ) {
  * @param int|null $user_id User id, or null for the current user.
  * @return string|null
  */
-function dahu_user_pricing_get_tier( $user_id = null ) {
+function ubac_pricing_get_tier( $user_id = null ) {
 
 	if ( null === $user_id ) {
-		return Dahu_User_Pricing_Context::get_tier();
+		return Ubac_Pricing_Context::get_tier();
 	}
 
-	return Dahu_User_Pricing_Context::get_tier_for_user( (int) $user_id );
+	return Ubac_Pricing_Context::get_tier_for_user( (int) $user_id );
 }
 
 /**
@@ -181,9 +181,9 @@ function dahu_user_pricing_get_tier( $user_id = null ) {
  * @param int          $quantity Quantity.
  * @return array{price_excl_tax: float|null, tier: string|null}
  */
-function dahu_user_pricing_resolve_line_pricing( $product, $user, $quantity = 1 ) {
+function ubac_pricing_resolve_line_pricing( $product, $user, $quantity = 1 ) {
 
-	return Dahu_User_Pricing_Order::resolve_line_pricing( $product, $user, $quantity );
+	return Ubac_Pricing_Order::resolve_line_pricing( $product, $user, $quantity );
 }
 
 /* -------------------------------------------------------------------------
@@ -196,7 +196,7 @@ add_filter(
 
 		$settings = sprintf(
 			'<a href="%s">%s</a>',
-			esc_url( admin_url( 'admin.php?page=' . DAHU_USER_PRICING_SETTINGS_PAGE ) ),
+			esc_url( admin_url( 'admin.php?page=' . UBAC_PRICING_SETTINGS_PAGE ) ),
 			esc_html__( 'Settings', 'ubac-pricing' )
 		);
 
@@ -244,7 +244,7 @@ add_filter(
  * Registered here rather than inside the admin include, because the
  * activation flag has to be set whatever else is loaded.
  */
-require_once DAHU_USER_PRICING_PATH . 'includes/dahu-welcome.php';
+require_once UBAC_PRICING_PATH . 'includes/ubac-welcome.php';
 
 /*
  * The flag, not a redirect: an activation hook that redirects breaks bulk
@@ -255,21 +255,21 @@ require_once DAHU_USER_PRICING_PATH . 'includes/dahu-welcome.php';
 register_activation_hook(
 	__FILE__,
 	static function () {
-		Dahu_Welcome::mark_activated( 'dahu-user-pricing' );
+		Ubac_Welcome::mark_activated( 'ubac-pricing' );
 	}
 );
 
 add_action(
 	'init',
 	static function () {
-		Dahu_Welcome::register(
+		Ubac_Welcome::register(
 			array(
-				'slug'       => 'dahu-user-pricing',
+				'slug'       => 'ubac-pricing',
 				'name'       => __( 'User pricing', 'ubac-pricing' ),
 				'tagline'    => __( 'Prices that follow the customer rather than the catalogue.', 'ubac-pricing' ),
-				'file'       => DAHU_USER_PRICING_FILE,
-				'version'    => DAHU_USER_PRICING_VERSION,
-				'textdomain' => 'dahu-user-pricing',
+				'file'       => UBAC_PRICING_FILE,
+				'version'    => UBAC_PRICING_VERSION,
+				'textdomain' => 'ubac-pricing',
 				'mark'       => array(
 					'view'  => '0 0 112 112',
 					'paths' => array(
@@ -312,20 +312,20 @@ add_action(
 				 * with no tier yet. The role map is left out on purpose: it is
 				 * only rendered once a tier exists.
 				 */
-				'tour_screen' => 'woocommerce_page_dahu-user-pricing',
+				'tour_screen' => 'woocommerce_page_ubac-pricing',
 				'tour'        => array(
 					array(
-						'selector' => 'input[name="dahu_user_pricing_settings[tiers][dahu.new][label]"]',
+						'selector' => 'input[name="ubac_pricing_settings[tiers][ubac.new][label]"]',
 						'title'    => __( 'Name a tier', 'ubac-pricing' ),
 						'text'     => __( 'Type a name here and save to create your first price tier.', 'ubac-pricing' ),
 					),
 					array(
-						'selector' => '.dahu-user-pricing-settings__roles',
+						'selector' => '.ubac-pricing-settings__roles',
 						'title'    => __( 'Who can preview', 'ubac-pricing' ),
 						'text'     => __( 'Tick the roles that may browse the shop as any tier.', 'ubac-pricing' ),
 					),
 					array(
-						'selector' => '.dahu-user-pricing-settings__margin',
+						'selector' => '.ubac-pricing-settings__margin',
 						'title'    => __( 'Show the margin', 'ubac-pricing' ),
 						'text'     => __( 'Optionally show resellers their margin over the public price.', 'ubac-pricing' ),
 					),

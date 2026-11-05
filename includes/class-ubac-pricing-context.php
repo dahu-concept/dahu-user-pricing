@@ -7,7 +7,7 @@
  * request is decided once, so the price shown, the price charged, the label in
  * front of it and the class on the body can never disagree about it.
  *
- * @package DahuUserPricing
+ * @package UbacPricing
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -15,12 +15,12 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Tier resolution for the current request.
  */
-class Dahu_User_Pricing_Context {
+class Ubac_Pricing_Context {
 
 	/**
 	 * Cookie holding the view preference of the Pro/public switch.
 	 */
-	const VIEW_COOKIE = 'dahu_user_pricing_view';
+	const VIEW_COOKIE = 'ubac_pricing_view';
 
 	const VIEW_TIER   = 'tier';
 	const VIEW_PUBLIC = 'public';
@@ -104,7 +104,7 @@ class Dahu_User_Pricing_Context {
 	 */
 	private static function resolve_tier() {
 
-		$preview = Dahu_User_Pricing_Preview::get_preview_tier();
+		$preview = Ubac_Pricing_Preview::get_preview_tier();
 
 		if ( null !== $preview ) {
 			return $preview;
@@ -158,7 +158,7 @@ class Dahu_User_Pricing_Context {
 	 */
 	public static function tier_from_roles( array $roles ) {
 
-		$map = Dahu_User_Pricing_Settings::get( 'role_tier_map' );
+		$map = Ubac_Pricing_Settings::get( 'role_tier_map' );
 
 		if ( ! is_array( $map ) || ! $map ) {
 			return null;
@@ -166,7 +166,7 @@ class Dahu_User_Pricing_Context {
 
 		foreach ( $roles as $role ) {
 
-			if ( isset( $map[ $role ] ) && Dahu_User_Pricing_Tiers::exists( $map[ $role ] ) ) {
+			if ( isset( $map[ $role ] ) && Ubac_Pricing_Tiers::exists( $map[ $role ] ) ) {
 				return $map[ $role ];
 			}
 		}
@@ -209,7 +209,7 @@ class Dahu_User_Pricing_Context {
 			return false;
 		}
 
-		$manager_roles = Dahu_User_Pricing_Settings::get( 'manager_roles' );
+		$manager_roles = Ubac_Pricing_Settings::get( 'manager_roles' );
 
 		if ( ! is_array( $manager_roles ) || ! $manager_roles ) {
 			return false;
@@ -244,11 +244,11 @@ class Dahu_User_Pricing_Context {
 
 		if ( null === $tier ) {
 
-			$keys = Dahu_User_Pricing_Tiers::keys();
+			$keys = Ubac_Pricing_Tiers::keys();
 			$tier = $keys ? $keys[0] : null;
 		}
 
-		$labels = null === $tier ? null : Dahu_User_Pricing_Tiers::get_labels( $tier );
+		$labels = null === $tier ? null : Ubac_Pricing_Tiers::get_labels( $tier );
 
 		return $labels ? $labels : array(
 			'public' => '',
@@ -268,7 +268,7 @@ class Dahu_User_Pricing_Context {
 	 */
 	public static function view_mode() {
 
-		if ( ! Dahu_User_Pricing_Settings::get( 'view_switch' ) ) {
+		if ( ! Ubac_Pricing_Settings::get( 'view_switch' ) ) {
 			return self::VIEW_TIER;
 		}
 
@@ -307,17 +307,17 @@ class Dahu_User_Pricing_Context {
 		$tier = self::get_tier();
 
 		if ( null !== $tier ) {
-			$classes[] = 'dahu-user-pricing-tier';
-			$classes[] = 'dahu-user-pricing-tier-' . sanitize_html_class( $tier );
+			$classes[] = 'ubac-pricing-tier';
+			$classes[] = 'ubac-pricing-tier-' . sanitize_html_class( $tier );
 		} else {
-			$classes[] = 'dahu-user-pricing-public';
+			$classes[] = 'ubac-pricing-public';
 		}
 
 		if ( self::is_manager() ) {
-			$classes[] = 'dahu-user-pricing-manager';
+			$classes[] = 'ubac-pricing-manager';
 		}
 
-		$classes[] = 'dahu-user-pricing-view-' . sanitize_html_class( self::view_mode() );
+		$classes[] = 'ubac-pricing-view-' . sanitize_html_class( self::view_mode() );
 
 		return $classes;
 	}

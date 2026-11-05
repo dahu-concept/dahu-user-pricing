@@ -1,4 +1,4 @@
-# Dahu User Pricing
+# Ubac User Pricing
 
 Per-account pricing for WooCommerce: named customer tiers, a price per tier on
 every product and variation, the public price and the resale margin shown
@@ -85,7 +85,7 @@ runs, and is invisible to anything reading the page without running scripts.
 
 ## The view switch
 
-`[dahu_user_pricing_view_switch]` renders a link that flips an account between
+`[ubac_pricing_view_switch]` renders a link that flips an account between
 its own prices and the public ones. Nothing places it automatically: a plugin
 injecting a control into a theme's header would be guessing at a layout it
 cannot see.
@@ -133,21 +133,21 @@ recognises the metas they set so as not to damage them.
 
 ```php
 // Supply a tier price from anywhere. Return null for "no tier price".
-add_filter( 'dahu_user_pricing_price', function ( $price, $product, $tier ) {
+add_filter( 'ubac_pricing_price', function ( $price, $product, $tier ) {
 	return $price;
 }, 10, 3 );
 
 // Metas marking an order line whose price belongs to a parent line.
-add_filter( 'dahu_user_pricing_child_line_metas', function ( $metas ) {
+add_filter( 'ubac_pricing_child_line_metas', function ( $metas ) {
 	$metas[] = '_my_bundle_parent';
 	return $metas;
 } );
 ```
 
 ```php
-dahu_user_pricing_get_tier( $user_id = null );          // tier key, or null
-dahu_user_pricing_get_price_labels( $tier = null );      // array{public, tier}
-dahu_user_pricing_resolve_line_pricing( $product, $user, $quantity = 1 );
+ubac_pricing_get_tier( $user_id = null );          // tier key, or null
+ubac_pricing_get_price_labels( $tier = null );      // array{public, tier}
+ubac_pricing_resolve_line_pricing( $product, $user, $quantity = 1 );
 ```
 
 The last one is what code building an order needs: a quote, a renewal, an

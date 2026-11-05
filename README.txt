@@ -1,5 +1,5 @@
 === Ubac Customer Pricing ===
-Contributors: dahuconcept
+Contributors: ubacconcept
 Tags: customer pricing, bulk pricing, wholesale, b2b, trade prices
 Requires at least: 6.0
 Tested up to: 7.1
@@ -12,7 +12,7 @@ Give each customer role its own price on every product, with the public price an
 
 == Description ==
 
-Dahu User Pricing adds price tiers to a WooCommerce shop. A tier is a named
+Ubac User Pricing adds price tiers to a WooCommerce shop. A tier is a named
 price level you create — Trade, Wholesale, Gold, whatever your shop calls them
 — and every product and variation gains one price field per tier. Map a
 WordPress role to a tier and accounts holding that role are charged that price,
@@ -54,7 +54,7 @@ what the display and the margin are computed from.
 A shop sale price does not stack on top of a tier price. A tier price is a
 negotiated figure, not a discount off the public one, and compounding them
 would make a reseller's price depend on a promotion they never agreed to. If
-you want the lower of the two instead, the `dahu_user_pricing_price` filter is
+you want the lower of the two instead, the `ubac_pricing_price` filter is
 three lines away.
 
 = Variable products =
@@ -65,13 +65,13 @@ tier, so one account's prices are never served to another from cache.
 
 = For developers =
 
-* `dahu_user_pricing_price` — supply a tier price from anywhere: a commercial
+* `ubac_pricing_price` — supply a tier price from anywhere: a commercial
   pricing plugin, a quantity-break table, an ERP. Return null for "no tier
   price".
-* `dahu_user_pricing_child_line_metas` — the metas marking an order line whose
+* `ubac_pricing_child_line_metas` — the metas marking an order line whose
   price is carried by a parent line, so bundle components are left alone.
-* `dahu_user_pricing_get_tier()`, `dahu_user_pricing_get_price_labels()` and
-  `dahu_user_pricing_resolve_line_pricing()` — ask for a tier, its labels, or
+* `ubac_pricing_get_tier()`, `ubac_pricing_get_price_labels()` and
+  `ubac_pricing_resolve_line_pricing()` — ask for a tier, its labels, or
   the net price a given customer pays, which is what code building an order
   needs.
 

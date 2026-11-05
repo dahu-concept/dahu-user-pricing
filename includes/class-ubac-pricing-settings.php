@@ -3,7 +3,7 @@
  * The plugin's single option: defaults, reading, sanitising.
  *
  * No user interface here — the settings screen lives in
- * class-dahu-user-pricing-admin-screens.php. This file is what every other
+ * class-ubac-pricing-admin-screens.php. This file is what every other
  * module reads, and keeping it free of markup is what lets the screen change
  * without the price resolution noticing.
  *
@@ -11,7 +11,7 @@
  * request that prices a product. One option is one row of autoloaded data; a
  * dozen options would be a dozen lookups on a cold cache for no gain.
  *
- * @package DahuUserPricing
+ * @package UbacPricing
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -19,9 +19,9 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Option access and validation.
  */
-class Dahu_User_Pricing_Settings {
+class Ubac_Pricing_Settings {
 
-	const OPTION_KEY = 'dahu_user_pricing_settings';
+	const OPTION_KEY = 'ubac_pricing_settings';
 
 	/**
 	 * Register the setting so options.php accepts the screen's form.
@@ -146,7 +146,7 @@ class Dahu_User_Pricing_Settings {
 	 * keys derived from it, so renaming a key would orphan every price filed
 	 * under the old one, silently. The screen therefore shows a key as
 	 * read-only text once it exists, and deleting a tier is a separate,
-	 * explicit action — see Dahu_User_Pricing_Tiers::delete().
+	 * explicit action — see Ubac_Pricing_Tiers::delete().
 	 *
 	 * @param mixed $input Raw submitted value.
 	 * @return array
@@ -233,7 +233,7 @@ class Dahu_User_Pricing_Settings {
 				continue;
 			}
 
-			$key = Dahu_User_Pricing_Tiers::make_key( $label, array_keys( $tiers ) );
+			$key = Ubac_Pricing_Tiers::make_key( $label, array_keys( $tiers ) );
 
 			if ( '' === $key ) {
 				continue;

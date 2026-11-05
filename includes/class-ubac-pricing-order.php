@@ -13,7 +13,7 @@
  * `set_total()` write amounts onto the line itself. No price filter, this
  * plugin's own included, can reach a value written that way — which is exactly
  * why this module exists rather than being handled by the filters in
- * class-dahu-user-pricing-prices.php. The line is repriced explicitly, from
+ * class-ubac-pricing-prices.php. The line is repriced explicitly, from
  * the ORDER's customer, after WooCommerce has finished adding it.
  *
  * WHAT THE PORT CHANGED. The version this came from decomposed tax by hand:
@@ -33,7 +33,7 @@
  * is the price, not a discount off another one — and a line whose subtotal and
  * total differ renders as "discounted" in every order view and every invoice.
  *
- * @package DahuUserPricing
+ * @package UbacPricing
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -41,12 +41,12 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Admin-side order pricing.
  */
-class Dahu_User_Pricing_Order {
+class Ubac_Pricing_Order {
 
 	/**
 	 * Nonce action of the reprice endpoint.
 	 */
-	const RECALC_NONCE = 'dahu-user-pricing-recalc';
+	const RECALC_NONCE = 'ubac-pricing-recalc';
 
 	/**
 	 * Hook the module.
@@ -59,7 +59,7 @@ class Dahu_User_Pricing_Order {
 		// plugin, which conventionally works at 100).
 		add_action( 'woocommerce_ajax_order_items_added', array( __CLASS__, 'reprice_added_items' ), 200, 2 );
 
-		add_action( 'wp_ajax_dahu_user_pricing_recalc_order', array( __CLASS__, 'ajax_recalc' ) );
+		add_action( 'wp_ajax_ubac_pricing_recalc_order', array( __CLASS__, 'ajax_recalc' ) );
 	}
 
 	/**
@@ -97,10 +97,10 @@ class Dahu_User_Pricing_Order {
 		// The request is WooCommerce's own order-item AJAX call, whose
 		// 'order-item' nonce it verified before this hook could run.
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- verified by WooCommerce before this hook.
-		if ( ! $order->get_user_id() && isset( $_POST['dahu_user_pricing_customer'] ) ) {
+		if ( ! $order->get_user_id() && isset( $_POST['ubac_pricing_customer'] ) ) {
 
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- as above.
-			$posted = absint( wp_unslash( $_POST['dahu_user_pricing_customer'] ) );
+			$posted = absint( wp_unslash( $_POST['ubac_pricing_customer'] ) );
 
 			if ( $posted && get_user_by( 'id', $posted ) ) {
 				$order->set_customer_id( $posted );
@@ -241,7 +241,7 @@ class Dahu_User_Pricing_Order {
 		 * @param bool     $allowed Whether repricing is allowed.
 		 * @param WC_Order $order   The order.
 		 */
-		return (bool) apply_filters( 'dahu_user_pricing_may_reprice_order', true, $order );
+		return (bool) apply_filters( 'ubac_pricing_may_reprice_order', true, $order );
 	}
 
 	/**
@@ -316,13 +316,13 @@ class Dahu_User_Pricing_Order {
 		}
 
 		$tier = ( $user instanceof WP_User )
-			? Dahu_User_Pricing_Context::tier_from_roles( (array) $user->roles )
+			? Ubac_Pricing_Context::tier_from_roles( (array) $user->roles )
 			: null;
 
-		Dahu_User_Pricing_Prices::suspend();
+		Ubac_Pricing_Prices::suspend();
 
 		// try/finally, and not for tidiness: a price source hooked onto
-		// dahu_user_pricing_price is third-party code, and anything thrown in
+		// ubac_pricing_price is third-party code, and anything thrown in
 		// here would leave the counter above zero for the rest of the request.
 		// Tier pricing would then be off everywhere, with no error on screen —
 		// a visitor's catalogue and cart quietly reverting to public prices.
@@ -331,11 +331,11 @@ class Dahu_User_Pricing_Order {
 			$price = null;
 
 			if ( null !== $tier ) {
-				$price = Dahu_User_Pricing_Prices::get_tier_price( $product, $tier, $quantity );
+				$price = Ubac_Pricing_Prices::get_tier_price( $product, $tier, $quantity );
 			}
 
 			if ( null === $price ) {
-				$price = Dahu_User_Pricing_Prices::get_public_price( $product );
+				$price = Ubac_Pricing_Prices::get_public_price( $product );
 				$tier  = null;
 			}
 
@@ -350,7 +350,7 @@ class Dahu_User_Pricing_Order {
 				);
 
 		} finally {
-			Dahu_User_Pricing_Prices::resume();
+			Ubac_Pricing_Prices::resume();
 		}
 
 		return array(
@@ -383,7 +383,7 @@ class Dahu_User_Pricing_Order {
 		 * @param string[] $metas Meta keys.
 		 */
 		$metas = apply_filters(
-			'dahu_user_pricing_child_line_metas',
+			'ubac_pricing_child_line_metas',
 			array( '_bundled_by', '_composite_parent', '_composite_item' )
 		);
 

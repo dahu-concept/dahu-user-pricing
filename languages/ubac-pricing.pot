@@ -2,7 +2,7 @@
 # This file is distributed under the MIT licence.
 msgid ""
 msgstr ""
-"Project-Id-Version: Dahu User Pricing\n"
+"Project-Id-Version: Ubac User Pricing\n"
 "Report-Msgid-Bugs-To: https://dahu-concept.fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +63,7 @@ msgid "Customer not found."
 msgstr ""
 
 #: ubac-pricing.php:121
-msgid "Dahu User Pricing requires WooCommerce to be installed and active."
+msgid "Ubac User Pricing requires WooCommerce to be installed and active."
 msgstr ""
 
 #: includes/class-ubac-pricing-admin-screens.php:629

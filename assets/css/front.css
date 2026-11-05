@@ -11,25 +11,25 @@
  * type scale the theme sets for a price.
  */
 
-.dahu-user-pricing-price {
+.ubac-pricing-price {
 	display: inline-flex;
 	flex-wrap: wrap;
 	align-items: baseline;
 	gap: .15em .6em;
 }
 
-.dahu-user-pricing-price__label {
+.ubac-pricing-price__label {
 	font-size: .85em;
 	font-weight: 400;
 	opacity: 1;
 }
 
-.dahu-user-pricing-price__amount {
+.ubac-pricing-price__amount {
 	font-variant-numeric: tabular-nums;
 }
 
-.dahu-user-pricing-price__tier,
-.dahu-user-pricing-price__public {
+.ubac-pricing-price__tier,
+.ubac-pricing-price__public {
 	display: inline-flex;
 	align-items: baseline;
 	gap: .3em;
@@ -40,7 +40,7 @@
  * says so; its colour is left to the theme, which already styles <del> for a
  * sale price and would otherwise be overridden for no reason.
  */
-.dahu-user-pricing-price__public {
+.ubac-pricing-price__public {
 	font-size: .9em;
 }
 
@@ -49,17 +49,17 @@
  * secondary beside it, so it reads exactly as it does to a visitor who is not
  * logged in — which is the whole point of the view.
  */
-.dahu-user-pricing-price--public .dahu-user-pricing-price__amount {
+.ubac-pricing-price--public .ubac-pricing-price__amount {
 	text-decoration: none;
 }
 
-.dahu-user-pricing-price__margin {
+.ubac-pricing-price__margin {
 	font-size: .85em;
 	font-variant-numeric: tabular-nums;
 	white-space: nowrap;
 }
 
-.dahu-user-pricing-switch {
+.ubac-pricing-switch {
 	display: inline-block;
 }
 
@@ -69,7 +69,7 @@
  * The amber is WooCommerce's own caution colour, and the contrast against the
  * dark text is above 4.5:1.
  */
-.dahu-user-pricing-preview-banner {
+.ubac-pricing-preview-banner {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -82,7 +82,7 @@
 	line-height: 1.4;
 }
 
-.dahu-user-pricing-preview-banner a {
+.ubac-pricing-preview-banner a {
 	color: #1d2327;
 	text-decoration: underline;
 	font-weight: 600;
