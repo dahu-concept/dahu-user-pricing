@@ -56,8 +56,8 @@ class Dahu_User_Pricing_Admin_Screens {
 
 		add_submenu_page(
 			'woocommerce',
-			__( 'User pricing', 'dahu-user-pricing' ),
-			__( 'User pricing', 'dahu-user-pricing' ),
+			__( 'User pricing', 'ubac-pricing' ),
+			__( 'User pricing', 'ubac-pricing' ),
 			'manage_woocommerce',
 			DAHU_USER_PRICING_SETTINGS_PAGE,
 			array( __CLASS__, 'render' )
@@ -148,8 +148,8 @@ class Dahu_User_Pricing_Admin_Screens {
 				array(
 					'ajaxUrl'      => admin_url( 'admin-ajax.php' ),
 					'nonce'        => wp_create_nonce( Dahu_User_Pricing_Order::RECALC_NONCE ),
-					'repriceLabel' => __( 'Reprice lines for this customer', 'dahu-user-pricing' ),
-					'failed'       => __( 'The lines could not be repriced. Reload the order and try again.', 'dahu-user-pricing' ),
+					'repriceLabel' => __( 'Reprice lines for this customer', 'ubac-pricing' ),
+					'failed'       => __( 'The lines could not be repriced. Reload the order and try again.', 'ubac-pricing' ),
 				)
 			);
 		}
@@ -168,7 +168,7 @@ class Dahu_User_Pricing_Admin_Screens {
 	public static function handle_delete() {
 
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
-			wp_die( esc_html__( 'You are not allowed to change pricing settings.', 'dahu-user-pricing' ), '', array( 'response' => 403 ) );
+			wp_die( esc_html__( 'You are not allowed to change pricing settings.', 'ubac-pricing' ), '', array( 'response' => 403 ) );
 		}
 
 		check_admin_referer( self::DELETE_ACTION );
@@ -208,8 +208,8 @@ class Dahu_User_Pricing_Admin_Screens {
 		echo '<div class="wrap dahu-ui dahu-user-pricing-settings">';
 
 		echo '<div class="dahu-ui-head">';
-		printf( '<h1 class="dahu-ui-head__title">%s</h1>', esc_html__( 'User pricing', 'dahu-user-pricing' ) );
-		printf( '<p class="dahu-ui-head__sub">%s</p>', esc_html__( 'Prices that follow the customer rather than the catalogue.', 'dahu-user-pricing' ) );
+		printf( '<h1 class="dahu-ui-head__title">%s</h1>', esc_html__( 'User pricing', 'ubac-pricing' ) );
+		printf( '<p class="dahu-ui-head__sub">%s</p>', esc_html__( 'Prices that follow the customer rather than the catalogue.', 'ubac-pricing' ) );
 		echo '</div>';
 
 		self::render_delete_notice();
@@ -219,7 +219,7 @@ class Dahu_User_Pricing_Admin_Screens {
 		if ( ! $tiers ) {
 			printf(
 				'<div class="dahu-user-pricing-settings__empty"><p>%s</p></div>',
-				esc_html__( 'No tier yet. Name one below and save — nothing about your prices changes until a tier exists and a role is mapped to it.', 'dahu-user-pricing' )
+				esc_html__( 'No tier yet. Name one below and save — nothing about your prices changes until a tier exists and a role is mapped to it.', 'ubac-pricing' )
 			);
 		}
 
@@ -260,8 +260,8 @@ class Dahu_User_Pricing_Admin_Screens {
 			$deleted ? 'success' : 'warning',
 			esc_html(
 				$deleted
-					? __( 'Tier deleted. The prices filed under it were kept: recreating the tier with the same name brings them back.', 'dahu-user-pricing' )
-					: __( 'That tier no longer exists.', 'dahu-user-pricing' )
+					? __( 'Tier deleted. The prices filed under it were kept: recreating the tier with the same name brings them back.', 'ubac-pricing' )
+					: __( 'That tier no longer exists.', 'ubac-pricing' )
 			)
 		);
 	}
@@ -277,22 +277,22 @@ class Dahu_User_Pricing_Admin_Screens {
 
 		echo '<div class="dahu-ui-card">';
 
-		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Tiers', 'dahu-user-pricing' ) );
+		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Tiers', 'ubac-pricing' ) );
 
 		printf(
 			'<p class="dahu-user-pricing-settings__hint">%s</p>',
-			esc_html__( 'The labels are shown in front of a price on the shop. Leave one empty to show that price with no prefix. No need for a trailing space — the spacing is handled for you.', 'dahu-user-pricing' )
+			esc_html__( 'The labels are shown in front of a price on the shop. Leave one empty to show that price with no prefix. No need for a trailing space — the spacing is handled for you.', 'ubac-pricing' )
 		);
 
 		echo '<table class="widefat striped dahu-user-pricing-settings__table">';
 
 		printf(
 			'<thead><tr><th>%1$s</th><th>%2$s</th><th>%3$s</th><th>%4$s</th><th>%5$s</th></tr></thead>',
-			esc_html__( 'Name', 'dahu-user-pricing' ),
-			esc_html__( 'Label for the tier price', 'dahu-user-pricing' ),
-			esc_html__( 'Label for the public price', 'dahu-user-pricing' ),
-			esc_html__( 'Key', 'dahu-user-pricing' ),
-			esc_html__( 'Prices set', 'dahu-user-pricing' )
+			esc_html__( 'Name', 'ubac-pricing' ),
+			esc_html__( 'Label for the tier price', 'ubac-pricing' ),
+			esc_html__( 'Label for the public price', 'ubac-pricing' ),
+			esc_html__( 'Key', 'ubac-pricing' ),
+			esc_html__( 'Prices set', 'ubac-pricing' )
 		);
 
 		echo '<tbody>';
@@ -340,25 +340,25 @@ class Dahu_User_Pricing_Admin_Screens {
 			'<td><input type="text" class="regular-text" name="%1$s[label]" value="%2$s" placeholder="%3$s"></td>',
 			esc_attr( $name ),
 			esc_attr( $tier['label'] ),
-			$is_new ? esc_attr__( 'e.g. Trade', 'dahu-user-pricing' ) : ''
+			$is_new ? esc_attr__( 'e.g. Trade', 'ubac-pricing' ) : ''
 		);
 
 		printf(
 			'<td><input type="text" class="regular-text" name="%1$s[label_tier]" value="%2$s" placeholder="%3$s"></td>',
 			esc_attr( $name ),
 			esc_attr( $tier['label_tier'] ),
-			$is_new ? esc_attr__( 'e.g. Your price:', 'dahu-user-pricing' ) : ''
+			$is_new ? esc_attr__( 'e.g. Your price:', 'ubac-pricing' ) : ''
 		);
 
 		printf(
 			'<td><input type="text" class="regular-text" name="%1$s[label_public]" value="%2$s" placeholder="%3$s"></td>',
 			esc_attr( $name ),
 			esc_attr( $tier['label_public'] ),
-			$is_new ? esc_attr__( 'e.g. Suggested retail:', 'dahu-user-pricing' ) : ''
+			$is_new ? esc_attr__( 'e.g. Suggested retail:', 'ubac-pricing' ) : ''
 		);
 
 		if ( $is_new ) {
-			printf( '<td class="dahu-user-pricing-settings__muted">%s</td><td></td>', esc_html__( 'set on save', 'dahu-user-pricing' ) );
+			printf( '<td class="dahu-user-pricing-settings__muted">%s</td><td></td>', esc_html__( 'set on save', 'ubac-pricing' ) );
 			echo '</tr>';
 			return;
 		}
@@ -372,12 +372,12 @@ class Dahu_User_Pricing_Admin_Screens {
 			esc_html(
 				sprintf(
 					/* translators: %s: how many products carry a price for this tier. */
-					_n( '%s product', '%s products', $count, 'dahu-user-pricing' ),
+					_n( '%s product', '%s products', $count, 'ubac-pricing' ),
 					number_format_i18n( $count )
 				)
 			),
 			esc_attr( $key ),
-			esc_html__( 'Delete tier', 'dahu-user-pricing' )
+			esc_html__( 'Delete tier', 'ubac-pricing' )
 		);
 
 		echo '</tr>';
@@ -426,12 +426,12 @@ class Dahu_User_Pricing_Admin_Screens {
 
 		echo '<div class="dahu-ui-card">';
 
-		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Which roles get which tier', 'dahu-user-pricing' ) );
+		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Which roles get which tier', 'ubac-pricing' ) );
 
 		if ( ! $tiers ) {
 			printf(
 				'<p class="dahu-user-pricing-settings__hint">%s</p>',
-				esc_html__( 'Nothing to map yet: save a tier first.', 'dahu-user-pricing' )
+				esc_html__( 'Nothing to map yet: save a tier first.', 'ubac-pricing' )
 			);
 			echo '</div>';
 			return;
@@ -439,15 +439,15 @@ class Dahu_User_Pricing_Admin_Screens {
 
 		printf(
 			'<p class="dahu-user-pricing-settings__hint">%s</p>',
-			esc_html__( 'An account holding two mapped roles gets one of the two tiers, and which one is not defined — give an account one mapped role.', 'dahu-user-pricing' )
+			esc_html__( 'An account holding two mapped roles gets one of the two tiers, and which one is not defined — give an account one mapped role.', 'ubac-pricing' )
 		);
 
 		echo '<table class="widefat striped dahu-user-pricing-settings__table">';
 
 		printf(
 			'<thead><tr><th>%1$s</th><th>%2$s</th></tr></thead>',
-			esc_html__( 'Role', 'dahu-user-pricing' ),
-			esc_html__( 'Tier', 'dahu-user-pricing' )
+			esc_html__( 'Role', 'ubac-pricing' ),
+			esc_html__( 'Tier', 'ubac-pricing' )
 		);
 
 		echo '<tbody>';
@@ -466,7 +466,7 @@ class Dahu_User_Pricing_Admin_Screens {
 			printf(
 				'<option value="" %1$s>%2$s</option>',
 				selected( '', $current, false ),
-				esc_html__( 'No tier — public prices', 'dahu-user-pricing' )
+				esc_html__( 'No tier — public prices', 'ubac-pricing' )
 			);
 
 			foreach ( $tiers as $key => $tier ) {
@@ -499,16 +499,16 @@ class Dahu_User_Pricing_Admin_Screens {
 
 		echo '<div class="dahu-ui-card">';
 
-		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Who can preview a tier', 'dahu-user-pricing' ) );
+		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Who can preview a tier', 'ubac-pricing' ) );
 
 		printf(
 			'<p class="dahu-user-pricing-settings__hint">%s</p>',
-			esc_html__( 'These roles get a toolbar menu for looking at the shop as any tier. Prices while previewing are really that tier\'s prices, so an order cannot be placed until the preview is stopped.', 'dahu-user-pricing' )
+			esc_html__( 'These roles get a toolbar menu for looking at the shop as any tier. Prices while previewing are really that tier\'s prices, so an order cannot be placed until the preview is stopped.', 'ubac-pricing' )
 		);
 
 		printf(
 			'<p class="dahu-user-pricing-settings__hint">%s</p>',
-			esc_html__( 'Only roles that can manage WooCommerce are listed: previewing shows every tier\'s prices, which is not something a shop should be able to hand to its customers by ticking a box.', 'dahu-user-pricing' )
+			esc_html__( 'Only roles that can manage WooCommerce are listed: previewing shows every tier\'s prices, which is not something a shop should be able to hand to its customers by ticking a box.', 'ubac-pricing' )
 		);
 
 		echo '<fieldset class="dahu-user-pricing-settings__roles">';
@@ -563,19 +563,19 @@ class Dahu_User_Pricing_Admin_Screens {
 
 		echo '<div class="dahu-ui-card">';
 
-		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Display', 'dahu-user-pricing' ) );
+		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Display', 'ubac-pricing' ) );
 
 		echo '<table class="form-table" role="presentation"><tbody>';
 
 		printf(
 			'<tr><th scope="row">%s</th><td><fieldset class="dahu-user-pricing-settings__margin">',
-			esc_html__( 'Margin between the two prices', 'dahu-user-pricing' )
+			esc_html__( 'Margin between the two prices', 'ubac-pricing' )
 		);
 
 		$modes = array(
-			'none'        => __( 'Do not show it', 'dahu-user-pricing' ),
-			'percent'     => __( 'As a percentage of the public price', 'dahu-user-pricing' ),
-			'coefficient' => __( 'As a multiplier', 'dahu-user-pricing' ),
+			'none'        => __( 'Do not show it', 'ubac-pricing' ),
+			'percent'     => __( 'As a percentage of the public price', 'ubac-pricing' ),
+			'coefficient' => __( 'As a multiplier', 'ubac-pricing' ),
 		);
 
 		foreach ( $modes as $value => $label ) {
@@ -591,18 +591,18 @@ class Dahu_User_Pricing_Admin_Screens {
 
 		printf(
 			'</fieldset><p class="description">%s</p></td></tr>',
-			esc_html__( 'A margin tells a reseller what they make on a resale. It is off by default because it is commercial information, not decoration.', 'dahu-user-pricing' )
+			esc_html__( 'A margin tells a reseller what they make on a resale. It is off by default because it is commercial information, not decoration.', 'ubac-pricing' )
 		);
 
 		printf(
 			'<tr><th scope="row">%1$s</th><td><label><input type="checkbox" name="%2$s[view_switch]" value="1" %3$s> %4$s</label><p class="description">%5$s</p></td></tr>',
-			esc_html__( 'Public-price view switch', 'dahu-user-pricing' ),
+			esc_html__( 'Public-price view switch', 'ubac-pricing' ),
 			esc_attr( $option ),
 			checked( ! empty( $settings['view_switch'] ), true, false ),
-			esc_html__( 'Let an account switch between its own prices and the public ones', 'dahu-user-pricing' ),
+			esc_html__( 'Let an account switch between its own prices and the public ones', 'ubac-pricing' ),
 			sprintf(
 				/* translators: %s: the shortcode that renders the switch. */
-				esc_html__( 'Place the control with the %s shortcode. The switch changes what is displayed only: the cart always charges the account\'s own price.', 'dahu-user-pricing' ),
+				esc_html__( 'Place the control with the %s shortcode. The switch changes what is displayed only: the cart always charges the account\'s own price.', 'ubac-pricing' ),
 				'<code>[dahu_user_pricing_view_switch]</code>'
 			)
 		);
@@ -626,17 +626,17 @@ class Dahu_User_Pricing_Admin_Screens {
 
 		echo '<div class="dahu-ui-card">';
 
-		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Data', 'dahu-user-pricing' ) );
+		printf( '<div class="dahu-ui-card__head"><h2 class="dahu-ui-card__title">%s</h2></div>', esc_html__( 'Data', 'ubac-pricing' ) );
 
 		echo '<table class="form-table" role="presentation"><tbody>';
 
 		printf(
 			'<tr><th scope="row">%1$s</th><td><label><input type="checkbox" name="%2$s[delete_data_on_uninstall]" value="1" %3$s> %4$s</label><p class="description">%5$s</p></td></tr>',
-			esc_html__( 'On uninstall', 'dahu-user-pricing' ),
+			esc_html__( 'On uninstall', 'ubac-pricing' ),
 			esc_attr( $option ),
 			checked( ! empty( $settings['delete_data_on_uninstall'] ), true, false ),
-			esc_html__( 'Also delete every tier price set on a product', 'dahu-user-pricing' ),
-			esc_html__( 'Off by default. Tier prices are typed in by hand and deleting them cannot be undone, so uninstalling keeps them and a reinstall finds them again.', 'dahu-user-pricing' )
+			esc_html__( 'Also delete every tier price set on a product', 'ubac-pricing' ),
+			esc_html__( 'Off by default. Tier prices are typed in by hand and deleting them cannot be undone, so uninstalling keeps them and a reinstall finds them again.', 'ubac-pricing' )
 		);
 
 		echo '</tbody></table>';

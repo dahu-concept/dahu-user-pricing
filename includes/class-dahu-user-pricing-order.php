@@ -254,14 +254,14 @@ class Dahu_User_Pricing_Order {
 		check_ajax_referer( self::RECALC_NONCE, 'security' );
 
 		if ( ! current_user_can( 'edit_shop_orders' ) ) {
-			wp_send_json_error( array( 'message' => __( 'You are not allowed to edit orders.', 'dahu-user-pricing' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to edit orders.', 'ubac-pricing' ) ), 403 );
 		}
 
 		$order_id = isset( $_POST['order_id'] ) ? absint( wp_unslash( $_POST['order_id'] ) ) : 0;
 		$order    = $order_id ? wc_get_order( $order_id ) : false;
 
 		if ( ! $order instanceof WC_Order ) {
-			wp_send_json_error( array( 'message' => __( 'Order not found.', 'dahu-user-pricing' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'Order not found.', 'ubac-pricing' ) ), 400 );
 		}
 
 		$customer_id = isset( $_POST['customer_user'] ) ? absint( wp_unslash( $_POST['customer_user'] ) ) : 0;
@@ -269,13 +269,13 @@ class Dahu_User_Pricing_Order {
 		// An emptied field is a legitimate instruction: it means "no customer",
 		// and the lines must go back to public prices.
 		if ( $customer_id && ! get_user_by( 'id', $customer_id ) ) {
-			wp_send_json_error( array( 'message' => __( 'Customer not found.', 'dahu-user-pricing' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'Customer not found.', 'ubac-pricing' ) ), 400 );
 		}
 
 		if ( ! self::may_reprice( $order ) ) {
 			wp_send_json_error(
 				array(
-					'message' => __( 'This order can no longer be repriced: it has been paid, refunded, or is past editing.', 'dahu-user-pricing' ),
+					'message' => __( 'This order can no longer be repriced: it has been paid, refunded, or is past editing.', 'ubac-pricing' ),
 				),
 				409
 			);

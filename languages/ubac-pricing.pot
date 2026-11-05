@@ -8,339 +8,339 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2026-10-24 10:16+0000\n"
-"X-Domain: dahu-user-pricing\n"
+"X-Domain: ubac-pricing\n"
 
 #. translators: 1: tier name, 2: shop currency symbol. */
-#: includes/class-dahu-user-pricing-product-fields.php:79 includes/class-dahu-user-pricing-product-fields.php:125
+#: includes/class-ubac-pricing-product-fields.php:79 includes/class-ubac-pricing-product-fields.php:125
 msgid "%1$s price (%2$s)"
 msgstr ""
 
 #. translators: %s: how many products carry a price for this tier. */
-#: includes/class-dahu-user-pricing-admin-screens.php:375
+#: includes/class-ubac-pricing-admin-screens.php:375
 msgid "%s product"
 msgid_plural "%s products"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:594
+#: includes/class-ubac-pricing-admin-screens.php:594
 msgid "A margin tells a reseller what they make on a resale. It is off by default because it is commercial information, not decoration."
 msgstr ""
 
-#: dahu-user-pricing.php:303
+#: ubac-pricing.php:303
 msgid "A price for one account, or for a whole role."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-preview.php:319
+#: includes/class-ubac-pricing-preview.php:319
 msgid "A price preview is active, so this order would be placed at the previewed tier's prices. Stop the preview from the toolbar, then order again."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:638
+#: includes/class-ubac-pricing-admin-screens.php:638
 msgid "Also delete every tier price set on a product"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:442
+#: includes/class-ubac-pricing-admin-screens.php:442
 msgid "An account holding two mapped roles gets one of the two tiers, and which one is not defined — give an account one mapped role."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:578
+#: includes/class-ubac-pricing-admin-screens.php:578
 msgid "As a multiplier"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:577
+#: includes/class-ubac-pricing-admin-screens.php:577
 msgid "As a percentage of the public price"
 msgstr ""
 
-#: dahu-user-pricing.php:234
+#: ubac-pricing.php:234
 msgid "By Hugo Vial-Jaime — Dahu-Concept"
 msgstr ""
 
-#: dahu-user-pricing.php:307
+#: ubac-pricing.php:307
 msgid "Catalogue, product page, cart and order agree."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-order.php:272
+#: includes/class-ubac-pricing-order.php:272
 msgid "Customer not found."
 msgstr ""
 
-#: dahu-user-pricing.php:121
+#: ubac-pricing.php:121
 msgid "Dahu User Pricing requires WooCommerce to be installed and active."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:629
+#: includes/class-ubac-pricing-admin-screens.php:629
 msgid "Data"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:380
+#: includes/class-ubac-pricing-admin-screens.php:380
 msgid "Delete tier"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:566
+#: includes/class-ubac-pricing-admin-screens.php:566
 msgid "Display"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:576
+#: includes/class-ubac-pricing-admin-screens.php:576
 msgid "Do not show it"
 msgstr ""
 
-#: dahu-user-pricing.php:295
+#: ubac-pricing.php:295
 msgid "Done"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:294
+#: includes/class-ubac-pricing-admin-screens.php:294
 msgid "Key"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:293
+#: includes/class-ubac-pricing-admin-screens.php:293
 msgid "Label for the public price"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:292
+#: includes/class-ubac-pricing-admin-screens.php:292
 msgid "Label for the tier price"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-product-fields.php:84
+#: includes/class-ubac-pricing-product-fields.php:84
 msgid "Leave empty for this tier to pay the public price. Zero means free for this tier."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-product-fields.php:130
+#: includes/class-ubac-pricing-product-fields.php:130
 msgid "Leave empty to inherit the parent product, or the public price if it has none."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:602
+#: includes/class-ubac-pricing-admin-screens.php:602
 msgid "Let an account switch between its own prices and the public ones"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:572
+#: includes/class-ubac-pricing-admin-screens.php:572
 msgid "Margin between the two prices"
 msgstr ""
 
 #. translators: %s: margin as a percentage, already formatted. */
-#: includes/class-dahu-user-pricing-display.php:440
+#: includes/class-ubac-pricing-display.php:440
 msgid "Margin: %s%%"
 msgstr ""
 
 #. translators: %s: multiplier between the tier price and the public price. */
-#: includes/class-dahu-user-pricing-display.php:454
+#: includes/class-ubac-pricing-display.php:454
 msgid "Margin: ×%s"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:291
+#: includes/class-ubac-pricing-admin-screens.php:291
 msgid "Name"
 msgstr ""
 
-#: dahu-user-pricing.php:325
+#: ubac-pricing.php:325
 msgid "Name a tier"
 msgstr ""
 
-#: dahu-user-pricing.php:294
+#: ubac-pricing.php:294
 msgid "Next"
 msgstr ""
 
-#: dahu-user-pricing.php:310
+#: ubac-pricing.php:310
 msgid "No surprises"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:222
+#: includes/class-ubac-pricing-admin-screens.php:222
 msgid "No tier yet. Name one below and save — nothing about your prices changes until a tier exists and a role is mapped to it."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:469
+#: includes/class-ubac-pricing-admin-screens.php:469
 msgid "No tier — public prices"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:434
+#: includes/class-ubac-pricing-admin-screens.php:434
 msgid "Nothing to map yet: save a tier first."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:639
+#: includes/class-ubac-pricing-admin-screens.php:639
 msgid "Off by default. Tier prices are typed in by hand and deleting them cannot be undone, so uninstalling keeps them and a reinstall finds them again."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:635
+#: includes/class-ubac-pricing-admin-screens.php:635
 msgid "On uninstall"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:511
+#: includes/class-ubac-pricing-admin-screens.php:511
 msgid "Only roles that can manage WooCommerce are listed: previewing shows every tier's prices, which is not something a shop should be able to hand to its customers by ticking a box."
 msgstr ""
 
-#: dahu-user-pricing.php:336
+#: ubac-pricing.php:336
 msgid "Optionally show resellers their margin over the public price."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-order.php:264
+#: includes/class-ubac-pricing-order.php:264
 msgid "Order not found."
 msgstr ""
 
-#: dahu-user-pricing.php:302
+#: ubac-pricing.php:302
 msgid "Per customer"
 msgstr ""
 
 #. translators: %s: the shortcode that renders the switch. */
-#: includes/class-dahu-user-pricing-admin-screens.php:605
+#: includes/class-ubac-pricing-admin-screens.php:605
 msgid "Place the control with the %s shortcode. The switch changes what is displayed only: the cart always charges the account's own price."
 msgstr ""
 
-#: dahu-user-pricing.php:239
+#: ubac-pricing.php:239
 msgid "Plugin website"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-preview.php:169
+#: includes/class-ubac-pricing-preview.php:169
 msgid "Preview prices"
 msgstr ""
 
 #. translators: %s: name of the tier being previewed. */
-#: includes/class-dahu-user-pricing-preview.php:258
+#: includes/class-ubac-pricing-preview.php:258
 msgid "Previewing prices as %s. Prices shown are really this tier's prices, and an order cannot be placed until you stop."
 msgstr ""
 
 #. translators: %s: name of the tier being previewed. */
-#: includes/class-dahu-user-pricing-preview.php:172
+#: includes/class-ubac-pricing-preview.php:172
 msgid "Previewing: %s"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:295
+#: includes/class-ubac-pricing-admin-screens.php:295
 msgid "Prices set"
 msgstr ""
 
-#: dahu-user-pricing.php:275 includes/class-dahu-user-pricing-admin-screens.php:212
+#: ubac-pricing.php:275 includes/class-ubac-pricing-admin-screens.php:212
 msgid "Prices that follow the customer rather than the catalogue."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:599
+#: includes/class-ubac-pricing-admin-screens.php:599
 msgid "Public-price view switch"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:151
+#: includes/class-ubac-pricing-admin-screens.php:151
 msgid "Reprice lines for this customer"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:449
+#: includes/class-ubac-pricing-admin-screens.php:449
 msgid "Role"
 msgstr ""
 
-#: dahu-user-pricing.php:206
+#: ubac-pricing.php:206
 msgid "Settings"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-display.php:160
+#: includes/class-ubac-pricing-display.php:160
 msgid "Show my prices"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-display.php:159
+#: includes/class-ubac-pricing-display.php:159
 msgid "Show public prices"
 msgstr ""
 
-#: dahu-user-pricing.php:335
+#: ubac-pricing.php:335
 msgid "Show the margin"
 msgstr ""
 
-#: dahu-user-pricing.php:306
+#: ubac-pricing.php:306
 msgid "Shown everywhere"
 msgstr ""
 
-#: dahu-user-pricing.php:296
+#: ubac-pricing.php:296
 msgid "Skip"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-preview.php:196 includes/class-dahu-user-pricing-preview.php:263
+#: includes/class-ubac-pricing-preview.php:196 includes/class-ubac-pricing-preview.php:263
 msgid "Stop previewing"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:264
+#: includes/class-ubac-pricing-admin-screens.php:264
 msgid "That tier no longer exists."
 msgstr ""
 
-#: dahu-user-pricing.php:311
+#: ubac-pricing.php:311
 msgid "The customer sees the price they will pay."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:284
+#: includes/class-ubac-pricing-admin-screens.php:284
 msgid "The labels are shown in front of a price on the shop. Leave one empty to show that price with no prefix. No need for a trailing space — the spacing is handled for you."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:152
+#: includes/class-ubac-pricing-admin-screens.php:152
 msgid "The lines could not be repriced. Reload the order and try again."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:506
+#: includes/class-ubac-pricing-admin-screens.php:506
 msgid "These roles get a toolbar menu for looking at the shop as any tier. Prices while previewing are really that tier's prices, so an order cannot be placed until the preview is stopped."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-order.php:278
+#: includes/class-ubac-pricing-order.php:278
 msgid "This order can no longer be repriced: it has been paid, refunded, or is past editing."
 msgstr ""
 
-#: dahu-user-pricing.php:331
+#: ubac-pricing.php:331
 msgid "Tick the roles that may browse the shop as any tier."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:450
+#: includes/class-ubac-pricing-admin-screens.php:450
 msgid "Tier"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:263
+#: includes/class-ubac-pricing-admin-screens.php:263
 msgid "Tier deleted. The prices filed under it were kept: recreating the tier with the same name brings them back."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:280
+#: includes/class-ubac-pricing-admin-screens.php:280
 msgid "Tiers"
 msgstr ""
 
-#: dahu-user-pricing.php:326
+#: ubac-pricing.php:326
 msgid "Type a name here and save to create your first price tier."
 msgstr ""
 
-#: dahu-user-pricing.php:274 includes/class-dahu-user-pricing-admin-screens.php:59 includes/class-dahu-user-pricing-admin-screens.php:60 includes/class-dahu-user-pricing-admin-screens.php:211
+#: ubac-pricing.php:274 includes/class-ubac-pricing-admin-screens.php:59 includes/class-ubac-pricing-admin-screens.php:60 includes/class-ubac-pricing-admin-screens.php:211
 msgid "User pricing"
 msgstr ""
 
 #. translators: %s: plugin version number. */
-#: dahu-user-pricing.php:228
+#: ubac-pricing.php:228
 msgid "Version %s"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:429
+#: includes/class-ubac-pricing-admin-screens.php:429
 msgid "Which roles get which tier"
 msgstr ""
 
-#: dahu-user-pricing.php:330
+#: ubac-pricing.php:330
 msgid "Who can preview"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:502
+#: includes/class-ubac-pricing-admin-screens.php:502
 msgid "Who can preview a tier"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:171
+#: includes/class-ubac-pricing-admin-screens.php:171
 msgid "You are not allowed to change pricing settings."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-order.php:257
+#: includes/class-ubac-pricing-order.php:257
 msgid "You are not allowed to edit orders."
 msgstr ""
 
-#: dahu-user-pricing.php:298
+#: ubac-pricing.php:298
 msgid "You are not allowed to view this page."
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:357
+#: includes/class-ubac-pricing-admin-screens.php:357
 msgid "e.g. Suggested retail:"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:343
+#: includes/class-ubac-pricing-admin-screens.php:343
 msgid "e.g. Trade"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:350
+#: includes/class-ubac-pricing-admin-screens.php:350
 msgid "e.g. Your price:"
 msgstr ""
 
-#: dahu-user-pricing.php:297
+#: ubac-pricing.php:297
 msgid "of"
 msgstr ""
 
-#: includes/class-dahu-user-pricing-admin-screens.php:361
+#: includes/class-ubac-pricing-admin-screens.php:361
 msgid "set on save"
 msgstr ""
 

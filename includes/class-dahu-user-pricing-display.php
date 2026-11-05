@@ -156,8 +156,8 @@ class Dahu_User_Pricing_Display {
 			: Dahu_User_Pricing_Context::VIEW_TIER;
 
 		$text = ( Dahu_User_Pricing_Context::VIEW_TIER === $mode )
-			? esc_html__( 'Show public prices', 'dahu-user-pricing' )
-			: esc_html__( 'Show my prices', 'dahu-user-pricing' );
+			? esc_html__( 'Show public prices', 'ubac-pricing' )
+			: esc_html__( 'Show my prices', 'ubac-pricing' );
 
 		$url = wp_nonce_url(
 			add_query_arg( self::SWITCH_VAR, $target ),
@@ -437,7 +437,7 @@ class Dahu_User_Pricing_Display {
 
 			$text = sprintf(
 				/* translators: %s: margin as a percentage, already formatted. */
-				esc_html__( 'Margin: %s%%', 'dahu-user-pricing' ),
+				esc_html__( 'Margin: %s%%', 'ubac-pricing' ),
 				number_format_i18n( $value, 1 )
 			);
 
@@ -451,7 +451,7 @@ class Dahu_User_Pricing_Display {
 
 			$text = sprintf(
 				/* translators: %s: multiplier between the tier price and the public price. */
-				esc_html__( 'Margin: ×%s', 'dahu-user-pricing' ),
+				esc_html__( 'Margin: ×%s', 'ubac-pricing' ),
 				number_format_i18n( $value, 2 )
 			);
 

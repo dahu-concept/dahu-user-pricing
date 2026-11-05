@@ -76,12 +76,12 @@ class Dahu_User_Pricing_Product_Fields {
 					'value'       => is_scalar( $value ) ? (string) $value : '',
 					'label'       => sprintf(
 						/* translators: 1: tier name, 2: shop currency symbol. */
-						esc_html__( '%1$s price (%2$s)', 'dahu-user-pricing' ),
+						esc_html__( '%1$s price (%2$s)', 'ubac-pricing' ),
 						$tier['label'],
 						get_woocommerce_currency_symbol()
 					),
 					'desc_tip'    => true,
-					'description' => esc_html__( 'Leave empty for this tier to pay the public price. Zero means free for this tier.', 'dahu-user-pricing' ),
+					'description' => esc_html__( 'Leave empty for this tier to pay the public price. Zero means free for this tier.', 'ubac-pricing' ),
 					'data_type'   => 'price',
 					'wrapper_class' => 'dahu-user-pricing-field',
 				)
@@ -122,12 +122,12 @@ class Dahu_User_Pricing_Product_Fields {
 					'value'         => is_scalar( $value ) ? (string) $value : '',
 					'label'         => sprintf(
 						/* translators: 1: tier name, 2: shop currency symbol. */
-						esc_html__( '%1$s price (%2$s)', 'dahu-user-pricing' ),
+						esc_html__( '%1$s price (%2$s)', 'ubac-pricing' ),
 						$tier['label'],
 						get_woocommerce_currency_symbol()
 					),
 					'desc_tip'      => true,
-					'description'   => esc_html__( 'Leave empty to inherit the parent product, or the public price if it has none.', 'dahu-user-pricing' ),
+					'description'   => esc_html__( 'Leave empty to inherit the parent product, or the public price if it has none.', 'ubac-pricing' ),
 					'data_type'     => 'price',
 					'wrapper_class' => 'form-row form-row-full dahu-user-pricing-field',
 				)

@@ -1,4 +1,4 @@
-=== Dahu User Pricing ===
+=== Ubac Customer Pricing ===
 Contributors: dahuconcept
 Tags: customer pricing, bulk pricing, wholesale, b2b, trade prices
 Requires at least: 6.0

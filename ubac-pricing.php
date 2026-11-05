@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name:       Dahu User Pricing
+ * Plugin Name:       Ubac Customer Pricing
  * Description:       Per-account pricing for WooCommerce: named customer tiers, a price per tier on every product and variation, resale-margin display, a view switch between tier and public price, and admin-created order lines priced correctly net of tax.
  * Version:           1.1.0
  * Author:            Hugo Vial-Jaime
  * Author URI:        https://dahu-concept.fr
  * License:           MIT
  * License URI:       https://opensource.org/licenses/MIT
- * Text Domain:       dahu-user-pricing
+ * Text Domain:       ubac-pricing
  * Domain Path:       /languages
  * Requires at least: 6.0
  * Requires PHP:      7.4
@@ -114,7 +114,7 @@ function dahu_user_pricing_missing_wc_notice() {
 		'<div class="notice notice-error"><p>%s</p></div>',
 		esc_html__(
 			'Dahu User Pricing requires WooCommerce to be installed and active.',
-			'dahu-user-pricing'
+			'ubac-pricing'
 		)
 	);
 }
@@ -197,7 +197,7 @@ add_filter(
 		$settings = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( admin_url( 'admin.php?page=' . DAHU_USER_PRICING_SETTINGS_PAGE ) ),
-			esc_html__( 'Settings', 'dahu-user-pricing' )
+			esc_html__( 'Settings', 'ubac-pricing' )
 		);
 
 		array_unshift( $links, $settings );
@@ -219,18 +219,18 @@ add_filter(
 		return array(
 			sprintf(
 				/* translators: %s: plugin version number. */
-				esc_html__( 'Version %s', 'dahu-user-pricing' ),
+				esc_html__( 'Version %s', 'ubac-pricing' ),
 				esc_html( $header['Version'] )
 			),
 			sprintf(
 				'<a href="%s" target="_blank" rel="noopener">%s</a>',
 				esc_url( 'https://dahu-concept.fr' ),
-				esc_html__( 'By Hugo Vial-Jaime — Dahu-Concept', 'dahu-user-pricing' )
+				esc_html__( 'By Hugo Vial-Jaime — Dahu-Concept', 'ubac-pricing' )
 			),
 			sprintf(
 				'<a href="%s" target="_blank" rel="noopener">%s</a>',
 				esc_url( 'https://dahu-concept.fr' ),
-				esc_html__( 'Plugin website', 'dahu-user-pricing' )
+				esc_html__( 'Plugin website', 'ubac-pricing' )
 			),
 		);
 	},
@@ -265,8 +265,8 @@ add_action(
 		Dahu_Welcome::register(
 			array(
 				'slug'       => 'dahu-user-pricing',
-				'name'       => __( 'User pricing', 'dahu-user-pricing' ),
-				'tagline'    => __( 'Prices that follow the customer rather than the catalogue.', 'dahu-user-pricing' ),
+				'name'       => __( 'User pricing', 'ubac-pricing' ),
+				'tagline'    => __( 'Prices that follow the customer rather than the catalogue.', 'ubac-pricing' ),
 				'file'       => DAHU_USER_PRICING_FILE,
 				'version'    => DAHU_USER_PRICING_VERSION,
 				'textdomain' => 'dahu-user-pricing',
@@ -285,24 +285,24 @@ add_action(
 				 * no text domain of its own.
 				 */
 				'strings'    => array(
-					'next'   => __( 'Next', 'dahu-user-pricing' ),
-					'done'   => __( 'Done', 'dahu-user-pricing' ),
-					'skip'   => __( 'Skip', 'dahu-user-pricing' ),
-					'of'     => __( 'of', 'dahu-user-pricing' ),
-					'denied' => __( 'You are not allowed to view this page.', 'dahu-user-pricing' ),
+					'next'   => __( 'Next', 'ubac-pricing' ),
+					'done'   => __( 'Done', 'ubac-pricing' ),
+					'skip'   => __( 'Skip', 'ubac-pricing' ),
+					'of'     => __( 'of', 'ubac-pricing' ),
+					'denied' => __( 'You are not allowed to view this page.', 'ubac-pricing' ),
 				),
 				'points'     => array(
 				array(
-					'title' => __( 'Per customer', 'dahu-user-pricing' ),
-					'text'  => __( 'A price for one account, or for a whole role.', 'dahu-user-pricing' ),
+					'title' => __( 'Per customer', 'ubac-pricing' ),
+					'text'  => __( 'A price for one account, or for a whole role.', 'ubac-pricing' ),
 				),
 				array(
-					'title' => __( 'Shown everywhere', 'dahu-user-pricing' ),
-					'text'  => __( 'Catalogue, product page, cart and order agree.', 'dahu-user-pricing' ),
+					'title' => __( 'Shown everywhere', 'ubac-pricing' ),
+					'text'  => __( 'Catalogue, product page, cart and order agree.', 'ubac-pricing' ),
 				),
 				array(
-					'title' => __( 'No surprises', 'dahu-user-pricing' ),
-					'text'  => __( 'The customer sees the price they will pay.', 'dahu-user-pricing' ),
+					'title' => __( 'No surprises', 'ubac-pricing' ),
+					'text'  => __( 'The customer sees the price they will pay.', 'ubac-pricing' ),
 				),
 				),
 
@@ -316,18 +316,18 @@ add_action(
 				'tour'        => array(
 					array(
 						'selector' => 'input[name="dahu_user_pricing_settings[tiers][dahu.new][label]"]',
-						'title'    => __( 'Name a tier', 'dahu-user-pricing' ),
-						'text'     => __( 'Type a name here and save to create your first price tier.', 'dahu-user-pricing' ),
+						'title'    => __( 'Name a tier', 'ubac-pricing' ),
+						'text'     => __( 'Type a name here and save to create your first price tier.', 'ubac-pricing' ),
 					),
 					array(
 						'selector' => '.dahu-user-pricing-settings__roles',
-						'title'    => __( 'Who can preview', 'dahu-user-pricing' ),
-						'text'     => __( 'Tick the roles that may browse the shop as any tier.', 'dahu-user-pricing' ),
+						'title'    => __( 'Who can preview', 'ubac-pricing' ),
+						'text'     => __( 'Tick the roles that may browse the shop as any tier.', 'ubac-pricing' ),
 					),
 					array(
 						'selector' => '.dahu-user-pricing-settings__margin',
-						'title'    => __( 'Show the margin', 'dahu-user-pricing' ),
-						'text'     => __( 'Optionally show resellers their margin over the public price.', 'dahu-user-pricing' ),
+						'title'    => __( 'Show the margin', 'ubac-pricing' ),
+						'text'     => __( 'Optionally show resellers their margin over the public price.', 'ubac-pricing' ),
 					),
 				),
 			)
