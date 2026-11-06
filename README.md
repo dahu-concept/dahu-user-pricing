@@ -1,4 +1,4 @@
-# Ubac User Pricing
+# Ubac Customer Pricing
 
 Per-account pricing for WooCommerce: named customer tiers, a price per tier on
 every product and variation, the public price and the resale margin shown
