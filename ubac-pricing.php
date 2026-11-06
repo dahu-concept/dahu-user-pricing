@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Ubac Customer Pricing
  * Description:       Per-account pricing for WooCommerce: named customer tiers, a price per tier on every product and variation, resale-margin display, a view switch between tier and public price, and admin-created order lines priced correctly net of tax.
- * Version:           1.1.0
+ * Version:           1.1.1
  * Author:            Hugo Vial-Jaime
  * Author URI:        https://dahu-concept.fr
  * License:           MIT
@@ -19,7 +19,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'UBAC_PRICING_VERSION', '1.1.0' );
+define( 'UBAC_PRICING_VERSION', '1.1.1' );
 define( 'UBAC_PRICING_FILE', __FILE__ );
 define( 'UBAC_PRICING_PATH', plugin_dir_path( __FILE__ ) );
 define( 'UBAC_PRICING_URL', plugin_dir_url( __FILE__ ) );
