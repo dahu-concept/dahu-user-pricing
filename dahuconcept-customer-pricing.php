@@ -255,7 +255,7 @@ require_once UBAC_PRICING_PATH . 'includes/ubac-welcome.php';
 register_activation_hook(
 	__FILE__,
 	static function () {
-		Ubac_Welcome::mark_activated( 'ubac-pricing' );
+		Ubac_Welcome::mark_activated( 'dahuconcept-customer-pricing' );
 	}
 );
 
@@ -264,12 +264,12 @@ add_action(
 	static function () {
 		Ubac_Welcome::register(
 			array(
-				'slug'       => 'ubac-pricing',
+				'slug'       => 'dahuconcept-customer-pricing',
 				'name'       => __( 'User pricing', 'dahuconcept-customer-pricing' ),
 				'tagline'    => __( 'Prices that follow the customer rather than the catalogue.', 'dahuconcept-customer-pricing' ),
 				'file'       => UBAC_PRICING_FILE,
 				'version'    => UBAC_PRICING_VERSION,
-				'textdomain' => 'ubac-pricing',
+				'textdomain' => 'dahuconcept-customer-pricing',
 				'mark'       => array(
 					'view'  => '0 0 112 112',
 					'paths' => array(
