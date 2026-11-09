@@ -1,4 +1,4 @@
-# Ubac Customer Pricing
+# DahuConcept Customer Pricing
 
 Des prix par compte pour WooCommerce : des paliers tarifaires que vous nommez,
 un prix par palier sur chaque produit et chaque variation, le prix public et la

@@ -1,346 +1,345 @@
-# Copyright (C) 2026 Hugo Vial-Jaime
-# This file is distributed under the MIT licence.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ubac User Pricing\n"
-"Report-Msgid-Bugs-To: https://dahu-concept.fr\n"
+"Project-Id-Version: dahuconcept-customer-pricing\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2026-10-24 10:16+0000\n"
-"X-Domain: ubac-pricing\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"PO-Revision-Date: 2026-11-09 07:30+0000\n"
+"X-Generator: ubac i18n-build\n"
 
 #. translators: 1: tier name, 2: shop currency symbol. */
 #: includes/class-ubac-pricing-product-fields.php:79 includes/class-ubac-pricing-product-fields.php:125
 msgid "%1$s price (%2$s)"
-msgstr ""
+msgstr "Prix %1$s (%2$s)"
 
 #. translators: %s: how many products carry a price for this tier. */
 #: includes/class-ubac-pricing-admin-screens.php:375
 msgid "%s product"
 msgid_plural "%s products"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s produit"
+msgstr[1] "%s produits"
 
 #: includes/class-ubac-pricing-admin-screens.php:594
 msgid "A margin tells a reseller what they make on a resale. It is off by default because it is commercial information, not decoration."
-msgstr ""
+msgstr "Une marge indique à un revendeur ce qu’il gagne à la revente. Elle est désactivée par défaut parce que c’est une information commerciale, pas une décoration."
 
-#: ubac-pricing.php:303
+#: dahuconcept-customer-pricing.php:297
 msgid "A price for one account, or for a whole role."
-msgstr ""
+msgstr "Un prix pour un compte, ou pour tout un rôle."
 
 #: includes/class-ubac-pricing-preview.php:319
 msgid "A price preview is active, so this order would be placed at the previewed tier's prices. Stop the preview from the toolbar, then order again."
-msgstr ""
+msgstr "Un aperçu des prix est en cours : cette commande serait passée aux prix du palier prévisualisé. Arrêtez l’aperçu depuis la barre d’outils, puis commandez à nouveau."
 
 #: includes/class-ubac-pricing-admin-screens.php:638
 msgid "Also delete every tier price set on a product"
-msgstr ""
+msgstr "Supprimer aussi tous les prix de palier posés sur les produits"
 
 #: includes/class-ubac-pricing-admin-screens.php:442
 msgid "An account holding two mapped roles gets one of the two tiers, and which one is not defined — give an account one mapped role."
-msgstr ""
+msgstr "Un compte qui cumule deux rôles associés reçoit l’un des deux paliers, et lequel n’est pas défini : donnez à un compte un seul rôle associé."
 
 #: includes/class-ubac-pricing-admin-screens.php:578
 msgid "As a multiplier"
-msgstr ""
+msgstr "En coefficient multiplicateur"
 
 #: includes/class-ubac-pricing-admin-screens.php:577
 msgid "As a percentage of the public price"
-msgstr ""
+msgstr "En pourcentage du prix public"
 
-#: ubac-pricing.php:234
+#: dahuconcept-customer-pricing.php:228
 msgid "By Hugo Vial-Jaime — Dahu-Concept"
-msgstr ""
+msgstr "Par Hugo Vial-Jaime — Dahu-Concept"
 
-#: ubac-pricing.php:307
+#: dahuconcept-customer-pricing.php:301
 msgid "Catalogue, product page, cart and order agree."
-msgstr ""
+msgstr "Catalogue, fiche produit, panier et commande concordent."
 
 #: includes/class-ubac-pricing-order.php:272
 msgid "Customer not found."
-msgstr ""
+msgstr "Client introuvable."
 
-#: ubac-pricing.php:121
-msgid "Ubac User Pricing requires WooCommerce to be installed and active."
-msgstr ""
+#: dahuconcept-customer-pricing.php:115
+msgid "DahuConcept Customer Pricing requires WooCommerce to be installed and active."
+msgstr "DahuConcept Customer Pricing nécessite que WooCommerce soit installé et actif."
 
 #: includes/class-ubac-pricing-admin-screens.php:629
 msgid "Data"
-msgstr ""
+msgstr "Données"
 
 #: includes/class-ubac-pricing-admin-screens.php:380
 msgid "Delete tier"
-msgstr ""
+msgstr "Supprimer le palier"
 
 #: includes/class-ubac-pricing-admin-screens.php:566
 msgid "Display"
-msgstr ""
+msgstr "Affichage"
 
 #: includes/class-ubac-pricing-admin-screens.php:576
 msgid "Do not show it"
-msgstr ""
+msgstr "Ne pas l’afficher"
 
-#: ubac-pricing.php:295
+#: dahuconcept-customer-pricing.php:289
 msgid "Done"
-msgstr ""
+msgstr "Terminé"
 
 #: includes/class-ubac-pricing-admin-screens.php:294
 msgid "Key"
-msgstr ""
+msgstr "Clé"
 
 #: includes/class-ubac-pricing-admin-screens.php:293
 msgid "Label for the public price"
-msgstr ""
+msgstr "Libellé du prix public"
 
 #: includes/class-ubac-pricing-admin-screens.php:292
 msgid "Label for the tier price"
-msgstr ""
+msgstr "Libellé du prix du palier"
 
 #: includes/class-ubac-pricing-product-fields.php:84
 msgid "Leave empty for this tier to pay the public price. Zero means free for this tier."
-msgstr ""
+msgstr "Laissez vide pour que ce palier paie le prix public. Zéro signifie gratuit pour ce palier."
 
 #: includes/class-ubac-pricing-product-fields.php:130
 msgid "Leave empty to inherit the parent product, or the public price if it has none."
-msgstr ""
+msgstr "Laissez vide pour hériter du produit parent, ou du prix public s’il n’en a pas."
 
 #: includes/class-ubac-pricing-admin-screens.php:602
 msgid "Let an account switch between its own prices and the public ones"
-msgstr ""
+msgstr "Permettre à un compte de basculer entre ses propres prix et les prix publics"
 
 #: includes/class-ubac-pricing-admin-screens.php:572
 msgid "Margin between the two prices"
-msgstr ""
+msgstr "Marge entre les deux prix"
 
 #. translators: %s: margin as a percentage, already formatted. */
 #: includes/class-ubac-pricing-display.php:440
 msgid "Margin: %s%%"
-msgstr ""
+msgstr "Marge : %s %%"
 
 #. translators: %s: multiplier between the tier price and the public price. */
 #: includes/class-ubac-pricing-display.php:454
 msgid "Margin: ×%s"
-msgstr ""
+msgstr "Marge : ×%s"
 
 #: includes/class-ubac-pricing-admin-screens.php:291
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
-#: ubac-pricing.php:325
+#: dahuconcept-customer-pricing.php:319
 msgid "Name a tier"
-msgstr ""
+msgstr "Nommez un niveau"
 
-#: ubac-pricing.php:294
+#: dahuconcept-customer-pricing.php:288
 msgid "Next"
-msgstr ""
+msgstr "Suivant"
 
-#: ubac-pricing.php:310
+#: dahuconcept-customer-pricing.php:304
 msgid "No surprises"
-msgstr ""
+msgstr "Sans surprise"
 
 #: includes/class-ubac-pricing-admin-screens.php:222
 msgid "No tier yet. Name one below and save — nothing about your prices changes until a tier exists and a role is mapped to it."
-msgstr ""
+msgstr "Aucun palier pour l’instant. Nommez-en un ci-dessous et enregistrez : rien ne change à vos prix tant qu’un palier n’existe pas et qu’aucun rôle ne lui est associé."
 
 #: includes/class-ubac-pricing-admin-screens.php:469
 msgid "No tier — public prices"
-msgstr ""
+msgstr "Aucun palier — prix publics"
 
 #: includes/class-ubac-pricing-admin-screens.php:434
 msgid "Nothing to map yet: save a tier first."
-msgstr ""
+msgstr "Rien à associer pour l’instant : enregistrez d’abord un palier."
 
 #: includes/class-ubac-pricing-admin-screens.php:639
 msgid "Off by default. Tier prices are typed in by hand and deleting them cannot be undone, so uninstalling keeps them and a reinstall finds them again."
-msgstr ""
+msgstr "Désactivé par défaut. Les prix de palier sont saisis à la main et leur suppression est irréversible : la désinstallation les conserve, et une réinstallation les retrouve."
 
 #: includes/class-ubac-pricing-admin-screens.php:635
 msgid "On uninstall"
-msgstr ""
+msgstr "À la désinstallation"
 
 #: includes/class-ubac-pricing-admin-screens.php:511
 msgid "Only roles that can manage WooCommerce are listed: previewing shows every tier's prices, which is not something a shop should be able to hand to its customers by ticking a box."
-msgstr ""
+msgstr "Seuls les rôles pouvant gérer WooCommerce sont proposés : un aperçu montre les prix de tous les paliers, ce qu’une boutique ne devrait pas pouvoir confier à ses clients en cochant une case."
 
-#: ubac-pricing.php:336
+#: dahuconcept-customer-pricing.php:330
 msgid "Optionally show resellers their margin over the public price."
-msgstr ""
+msgstr "Affichez éventuellement aux revendeurs leur marge sur le prix public."
 
 #: includes/class-ubac-pricing-order.php:264
 msgid "Order not found."
-msgstr ""
+msgstr "Commande introuvable."
 
-#: ubac-pricing.php:302
+#: dahuconcept-customer-pricing.php:296
 msgid "Per customer"
-msgstr ""
+msgstr "Par client"
 
 #. translators: %s: the shortcode that renders the switch. */
 #: includes/class-ubac-pricing-admin-screens.php:605
 msgid "Place the control with the %s shortcode. The switch changes what is displayed only: the cart always charges the account's own price."
-msgstr ""
+msgstr "Placez la commande avec le code court %s. La bascule ne change que l’affichage : le panier facture toujours le prix propre au compte."
 
-#: ubac-pricing.php:239
+#: dahuconcept-customer-pricing.php:233
 msgid "Plugin website"
-msgstr ""
+msgstr "Site de l’extension"
 
 #: includes/class-ubac-pricing-preview.php:169
 msgid "Preview prices"
-msgstr ""
+msgstr "Aperçu des prix"
 
 #. translators: %s: name of the tier being previewed. */
 #: includes/class-ubac-pricing-preview.php:258
 msgid "Previewing prices as %s. Prices shown are really this tier's prices, and an order cannot be placed until you stop."
-msgstr ""
+msgstr "Aperçu des prix en tant que %s. Les prix affichés sont réellement ceux de ce palier, et aucune commande ne peut être passée avant l’arrêt de l’aperçu."
 
 #. translators: %s: name of the tier being previewed. */
 #: includes/class-ubac-pricing-preview.php:172
 msgid "Previewing: %s"
-msgstr ""
+msgstr "Aperçu : %s"
 
 #: includes/class-ubac-pricing-admin-screens.php:295
 msgid "Prices set"
-msgstr ""
+msgstr "Prix renseignés"
 
-#: ubac-pricing.php:275 includes/class-ubac-pricing-admin-screens.php:212
+#: dahuconcept-customer-pricing.php:269 includes/class-ubac-pricing-admin-screens.php:212
 msgid "Prices that follow the customer rather than the catalogue."
-msgstr ""
+msgstr "Des prix qui suivent le client plutôt que le catalogue."
 
 #: includes/class-ubac-pricing-admin-screens.php:599
 msgid "Public-price view switch"
-msgstr ""
+msgstr "Bascule vers les prix publics"
 
 #: includes/class-ubac-pricing-admin-screens.php:151
 msgid "Reprice lines for this customer"
-msgstr ""
+msgstr "Retarifer les lignes pour ce client"
 
 #: includes/class-ubac-pricing-admin-screens.php:449
 msgid "Role"
-msgstr ""
+msgstr "Rôle"
 
-#: ubac-pricing.php:206
+#: dahuconcept-customer-pricing.php:200
 msgid "Settings"
-msgstr ""
+msgstr "Réglages"
 
 #: includes/class-ubac-pricing-display.php:160
 msgid "Show my prices"
-msgstr ""
+msgstr "Afficher mes prix"
 
 #: includes/class-ubac-pricing-display.php:159
 msgid "Show public prices"
-msgstr ""
+msgstr "Afficher les prix publics"
 
-#: ubac-pricing.php:335
+#: dahuconcept-customer-pricing.php:329
 msgid "Show the margin"
-msgstr ""
+msgstr "Affichez la marge"
 
-#: ubac-pricing.php:306
+#: dahuconcept-customer-pricing.php:300
 msgid "Shown everywhere"
-msgstr ""
+msgstr "Affiché partout"
 
-#: ubac-pricing.php:296
+#: dahuconcept-customer-pricing.php:290
 msgid "Skip"
-msgstr ""
+msgstr "Passer"
 
 #: includes/class-ubac-pricing-preview.php:196 includes/class-ubac-pricing-preview.php:263
 msgid "Stop previewing"
-msgstr ""
+msgstr "Arrêter l’aperçu"
 
 #: includes/class-ubac-pricing-admin-screens.php:264
 msgid "That tier no longer exists."
-msgstr ""
+msgstr "Ce palier n’existe plus."
 
-#: ubac-pricing.php:311
+#: dahuconcept-customer-pricing.php:305
 msgid "The customer sees the price they will pay."
-msgstr ""
+msgstr "Le client voit le prix qu’il paiera."
 
 #: includes/class-ubac-pricing-admin-screens.php:284
 msgid "The labels are shown in front of a price on the shop. Leave one empty to show that price with no prefix. No need for a trailing space — the spacing is handled for you."
-msgstr ""
+msgstr "Les libellés s’affichent devant un prix sur la boutique. Laissez-en un vide pour afficher ce prix sans préfixe. Pas besoin d’espace à la fin : l’espacement est géré pour vous."
 
 #: includes/class-ubac-pricing-admin-screens.php:152
 msgid "The lines could not be repriced. Reload the order and try again."
-msgstr ""
+msgstr "Les lignes n’ont pas pu être retarifées. Rechargez la commande et réessayez."
 
 #: includes/class-ubac-pricing-admin-screens.php:506
 msgid "These roles get a toolbar menu for looking at the shop as any tier. Prices while previewing are really that tier's prices, so an order cannot be placed until the preview is stopped."
-msgstr ""
+msgstr "Ces rôles obtiennent un menu dans la barre d’outils pour voir la boutique comme n’importe quel palier. Pendant un aperçu, les prix sont réellement ceux de ce palier : aucune commande ne peut être passée tant que l’aperçu n’est pas arrêté."
 
 #: includes/class-ubac-pricing-order.php:278
 msgid "This order can no longer be repriced: it has been paid, refunded, or is past editing."
-msgstr ""
+msgstr "Cette commande ne peut plus être retarifée : elle a été payée, remboursée, ou n’est plus modifiable."
 
-#: ubac-pricing.php:331
+#: dahuconcept-customer-pricing.php:325
 msgid "Tick the roles that may browse the shop as any tier."
-msgstr ""
+msgstr "Cochez les rôles autorisés à parcourir la boutique sous n'importe quel niveau."
 
 #: includes/class-ubac-pricing-admin-screens.php:450
 msgid "Tier"
-msgstr ""
+msgstr "Palier"
 
 #: includes/class-ubac-pricing-admin-screens.php:263
 msgid "Tier deleted. The prices filed under it were kept: recreating the tier with the same name brings them back."
-msgstr ""
+msgstr "Palier supprimé. Les prix classés dessous ont été conservés : recréer le palier sous le même nom les retrouve."
 
 #: includes/class-ubac-pricing-admin-screens.php:280
 msgid "Tiers"
-msgstr ""
+msgstr "Paliers"
 
-#: ubac-pricing.php:326
+#: dahuconcept-customer-pricing.php:320
 msgid "Type a name here and save to create your first price tier."
-msgstr ""
+msgstr "Saisissez un nom ici et enregistrez pour créer votre premier niveau de prix."
 
-#: ubac-pricing.php:274 includes/class-ubac-pricing-admin-screens.php:59 includes/class-ubac-pricing-admin-screens.php:60 includes/class-ubac-pricing-admin-screens.php:211
+#: dahuconcept-customer-pricing.php:268 includes/class-ubac-pricing-admin-screens.php:59 includes/class-ubac-pricing-admin-screens.php:60 includes/class-ubac-pricing-admin-screens.php:211
 msgid "User pricing"
-msgstr ""
+msgstr "Tarifs par compte"
 
 #. translators: %s: plugin version number. */
-#: ubac-pricing.php:228
+#: dahuconcept-customer-pricing.php:222
 msgid "Version %s"
-msgstr ""
+msgstr "Version %s"
 
 #: includes/class-ubac-pricing-admin-screens.php:429
 msgid "Which roles get which tier"
-msgstr ""
+msgstr "Quel rôle reçoit quel palier"
 
-#: ubac-pricing.php:330
+#: dahuconcept-customer-pricing.php:324
 msgid "Who can preview"
-msgstr ""
+msgstr "Qui peut prévisualiser"
 
 #: includes/class-ubac-pricing-admin-screens.php:502
 msgid "Who can preview a tier"
-msgstr ""
+msgstr "Qui peut prévisualiser un palier"
 
 #: includes/class-ubac-pricing-admin-screens.php:171
 msgid "You are not allowed to change pricing settings."
-msgstr ""
+msgstr "Vous n’avez pas l’autorisation de modifier les réglages de tarification."
 
 #: includes/class-ubac-pricing-order.php:257
 msgid "You are not allowed to edit orders."
-msgstr ""
+msgstr "Vous n’avez pas l’autorisation de modifier les commandes."
 
-#: ubac-pricing.php:298
+#: dahuconcept-customer-pricing.php:292
 msgid "You are not allowed to view this page."
-msgstr ""
+msgstr "Vous n’avez pas l’autorisation de voir cette page."
 
 #: includes/class-ubac-pricing-admin-screens.php:357
 msgid "e.g. Suggested retail:"
-msgstr ""
+msgstr "ex. Prix conseillé :"
 
 #: includes/class-ubac-pricing-admin-screens.php:343
 msgid "e.g. Trade"
-msgstr ""
+msgstr "ex. Revendeur"
 
 #: includes/class-ubac-pricing-admin-screens.php:350
 msgid "e.g. Your price:"
-msgstr ""
+msgstr "ex. Votre prix :"
 
-#: ubac-pricing.php:297
+#: dahuconcept-customer-pricing.php:291
 msgid "of"
-msgstr ""
+msgstr "sur"
 
 #: includes/class-ubac-pricing-admin-screens.php:361
 msgid "set on save"
-msgstr ""
+msgstr "définie à l’enregistrement"
 

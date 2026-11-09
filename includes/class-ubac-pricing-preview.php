@@ -166,10 +166,10 @@ class Ubac_Pricing_Preview {
 			array(
 				'id'    => 'ubac-pricing-preview',
 				'title' => null === $current
-					? esc_html__( 'Preview prices', 'ubac-pricing' )
+					? esc_html__( 'Preview prices', 'dahuconcept-customer-pricing' )
 					: sprintf(
 						/* translators: %s: name of the tier being previewed. */
-						esc_html__( 'Previewing: %s', 'ubac-pricing' ),
+						esc_html__( 'Previewing: %s', 'dahuconcept-customer-pricing' ),
 						Ubac_Pricing_Tiers::label( $current )
 					),
 			)
@@ -193,7 +193,7 @@ class Ubac_Pricing_Preview {
 				array(
 					'id'     => 'ubac-pricing-preview-stop',
 					'parent' => 'ubac-pricing-preview',
-					'title'  => esc_html__( 'Stop previewing', 'ubac-pricing' ),
+					'title'  => esc_html__( 'Stop previewing', 'dahuconcept-customer-pricing' ),
 					'href'   => esc_url( self::switch_url( '0' ) ),
 				)
 			);
@@ -255,12 +255,12 @@ class Ubac_Pricing_Preview {
 			esc_html(
 				sprintf(
 					/* translators: %s: name of the tier being previewed. */
-					__( 'Previewing prices as %s. Prices shown are really this tier\'s prices, and an order cannot be placed until you stop.', 'ubac-pricing' ),
+					__( 'Previewing prices as %s. Prices shown are really this tier\'s prices, and an order cannot be placed until you stop.', 'dahuconcept-customer-pricing' ),
 					Ubac_Pricing_Tiers::label( $tier )
 				)
 			),
 			esc_url( self::switch_url( '0' ) ),
-			esc_html__( 'Stop previewing', 'ubac-pricing' )
+			esc_html__( 'Stop previewing', 'dahuconcept-customer-pricing' )
 		);
 	}
 
@@ -316,6 +316,6 @@ class Ubac_Pricing_Preview {
 	 */
 	private static function block_message() {
 
-		return esc_html__( 'A price preview is active, so this order would be placed at the previewed tier\'s prices. Stop the preview from the toolbar, then order again.', 'ubac-pricing' );
+		return esc_html__( 'A price preview is active, so this order would be placed at the previewed tier\'s prices. Stop the preview from the toolbar, then order again.', 'dahuconcept-customer-pricing' );
 	}
 }

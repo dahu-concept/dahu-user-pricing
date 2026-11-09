@@ -1,4 +1,4 @@
-=== Ubac Customer Pricing ===
+=== DahuConcept Customer Pricing ===
 Contributors: dahuconcept
 Tags: customer pricing, bulk pricing, wholesale, b2b, trade prices
 Requires at least: 6.2
@@ -12,7 +12,7 @@ Give each customer role its own price on every product, with the public price an
 
 == Description ==
 
-Ubac User Pricing adds price tiers to a WooCommerce shop. A tier is a named
+DahuConcept Customer Pricing adds price tiers to a WooCommerce shop. A tier is a named
 price level you create — Trade, Wholesale, Gold, whatever your shop calls them
 — and every product and variation gains one price field per tier. Map a
 WordPress role to a tier and accounts holding that role are charged that price,
