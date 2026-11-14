@@ -1,4 +1,4 @@
-=== DahuConcept Customer Pricing ===
+=== DahuConcept Customer Pricing for WooCommerce ===
 Contributors: dahuconcept
 Tags: customer pricing, bulk pricing, wholesale, b2b, trade prices
 Requires at least: 6.2

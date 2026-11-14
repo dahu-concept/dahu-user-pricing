@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       DahuConcept Customer Pricing
+ * Plugin Name:       DahuConcept Customer Pricing for WooCommerce
  * Description:       Per-account pricing for WooCommerce: named customer tiers, a price per tier on every product and variation, resale-margin display, a view switch between tier and public price, and admin-created order lines priced correctly net of tax.
  * Version:           1.1.2
  * Author:            Hugo Vial-Jaime
@@ -11,6 +11,7 @@
  * Domain Path:       /languages
  * Requires at least: 6.2
  * Requires PHP:      7.4
+ * Requires Plugins: woocommerce
  * WC requires at least: 7.0
  * WC tested up to:   11.2
  *
