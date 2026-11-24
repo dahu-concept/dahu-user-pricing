@@ -1,6 +1,6 @@
 === DahuConcept Customer Pricing for WooCommerce ===
 Contributors: dahuconcept
-Tags: customer pricing, bulk pricing, wholesale, b2b, trade prices
+Tags: customer pricing, bulk pricing, wholesale, b2b, woocommerce
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
