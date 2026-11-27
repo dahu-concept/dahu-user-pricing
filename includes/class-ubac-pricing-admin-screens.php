@@ -249,10 +249,16 @@ class Ubac_Pricing_Admin_Screens {
 	 */
 	private static function render_delete_notice() {
 
+		// A read-only flag left in the URL by the redirect that follows a
+		// deletion, used only to pick the colour of a notice. The deletion
+		// itself is nonce-checked where it happens; requiring a nonce to read
+		// back its outcome would protect nothing.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- see above.
 		if ( ! isset( $_GET['ubac-tier-deleted'] ) ) {
 			return;
 		}
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- same read-only flag, sanitised with sanitize_key().
 		$deleted = '1' === sanitize_key( wp_unslash( $_GET['ubac-tier-deleted'] ) );
 
 		printf(

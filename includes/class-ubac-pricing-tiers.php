@@ -250,12 +250,16 @@ class Ubac_Pricing_Tiers {
 
 		global $wpdb;
 
+		// %i carries the table name, so nothing is interpolated into the
+		// string at all. It needs WordPress 6.2, which this plugin already
+		// requires.
 		$sql = $wpdb->prepare(
-			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name, not data.
-			"SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key = %s AND meta_value <> ''",
+			"SELECT COUNT(*) FROM %i WHERE meta_key = %s AND meta_value <> ''",
+			$wpdb->postmeta,
 			self::price_meta_key( $key )
 		);
 
-		return (int) $wpdb->get_var( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- prepared above.
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- prepared just above; counting rows by meta_key has no core API that avoids loading every post, and the figure is read once on a screen the shop opens by hand, so caching it would mean inventing an invalidation for a number nobody polls.
+		return (int) $wpdb->get_var( $sql );
 	}
 }

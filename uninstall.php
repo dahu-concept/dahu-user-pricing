@@ -63,13 +63,16 @@ function ubac_pricing_uninstall_site() {
 	// classes unloaded. If one of the two ever changes, the other has to.
 	$like = $wpdb->esc_like( '_ubac_pricing_price_' ) . '%';
 
+	// %i carries the table name, so nothing is interpolated into the string
+	// at all. It needs WordPress 6.2, which this plugin already requires.
 	$sql = $wpdb->prepare(
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name, not data.
-		"DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE %s",
+		'DELETE FROM %i WHERE meta_key LIKE %s',
+		$wpdb->postmeta,
 		$like
 	);
 
-	$wpdb->query( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- prepared above.
+	// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- prepared just above; deleting every row whose meta_key carries a prefix has no core API, and a cache is meaningless in an uninstaller that runs once and leaves nothing behind.
+	$wpdb->query( $sql );
 }
 
 if ( is_multisite() ) {

@@ -155,7 +155,24 @@ class Ubac_Pricing_Product_Fields {
 			return;
 		}
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- may_save() verified the nonce above.
+		/* READ RAW, AND SANITISED ONE LAYER DOWN, DELIBERATELY.
+		 *
+		 * Running map_deep( ..., 'sanitize_text_field' ) here closes the
+		 * sniff, and it was done that way first -- but it loses the one thing
+		 * apply_price() needs to tell apart. An empty field means DELETE this
+		 * tier's price; a field holding something unreadable must be REFUSED,
+		 * leaving the existing price alone. Sanitising on the way in turns the
+		 * second into the first, so a value carrying one invalid UTF-8 byte --
+		 * a paste out of a spreadsheet saved in Windows-1252 -- silently wiped
+		 * a tier and dropped the customer back to the public price.
+		 *
+		 * So the cleaning happens in apply_price(), where the submitted string
+		 * and its cleaned form are both still in hand. Every value reaching
+		 * storage goes through sanitize_text_field() and then
+		 * wc_format_decimal(), and anything that is not a positive number is
+		 * refused rather than written.
+		 */
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- may_save() verified the nonce above; every value is sanitised and validated in apply_price(), for the reason set out just above.
 		$submitted = isset( $_POST[ self::FIELD_SIMPLE ] ) ? wp_unslash( $_POST[ self::FIELD_SIMPLE ] ) : array();
 
 		if ( ! is_array( $submitted ) ) {
@@ -189,7 +206,7 @@ class Ubac_Pricing_Product_Fields {
 			return;
 		}
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- may_save() verified the nonce above.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- may_save() verified the nonce above; every value is sanitised and validated in apply_price(), see save_fields() for why not here.
 		$submitted = isset( $_POST[ self::FIELD_VARIATION ] ) ? wp_unslash( $_POST[ self::FIELD_VARIATION ] ) : array();
 
 		if ( ! is_array( $submitted ) ) {
@@ -226,7 +243,28 @@ class Ubac_Pricing_Product_Fields {
 		$existing = $product->get_meta( $meta_key, true );
 		$existing = is_scalar( $existing ) ? (string) $existing : '';
 
-		$raw = is_scalar( $raw ) ? trim( (string) $raw ) : '';
+		if ( ! is_scalar( $raw ) ) {
+			// A forged array, posted as field[tier][]=x. Unreadable, so
+			// refused -- it is not someone clearing the field, and treating
+			// it as one would wipe the tier's price on the strength of a
+			// malformed request.
+			return false;
+		}
+
+		$submitted = trim( (string) $raw );
+
+		// Cleaned here, and compared with what was submitted, because the two
+		// empties mean opposite things: an empty field deletes this tier's
+		// price, while a field holding something that cleans away to nothing
+		// is a mistake and must be refused, leaving the existing price where
+		// it is. Telling them apart is only possible while both are in hand.
+		$raw = sanitize_text_field( $submitted );
+
+		if ( '' === $raw && '' !== $submitted ) {
+			// Submitted, but nothing readable survived it. Refused, like any
+			// other unreadable price -- never treated as "clear this tier".
+			return false;
+		}
 
 		if ( '' === $raw ) {
 
@@ -240,8 +278,16 @@ class Ubac_Pricing_Product_Fields {
 		}
 
 		// wc_format_decimal() is what WooCommerce uses on its own price
-		// fields: it accepts the comma decimal separator the admin may be
-		// typing in and leaves a canonical dot-decimal string behind.
+		// fields, and it leaves a canonical dot-decimal string behind.
+		//
+		// It follows the shop's own woocommerce_price_decimal_sep setting,
+		// which is worth stating plainly because the comment here used to
+		// claim it simply "accepts the comma". Measured on 2026-11-27: on a
+		// shop configured with a dot, '12,50' comes out as '1250' -- a factor
+		// of a hundred -- because the comma is then a thousands separator. A
+		// shop configured with a comma reads it as twelve fifty. That is
+		// exactly how WooCommerce's own price fields behave, so it is left
+		// alone; both branches are held by the bench.
 		$value = wc_format_decimal( $raw );
 
 		if ( '' === $value || ! is_numeric( $value ) || (float) $value < 0 ) {
